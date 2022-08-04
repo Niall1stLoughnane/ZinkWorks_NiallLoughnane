@@ -14,11 +14,6 @@ public class NotesUtilTest {
         assertEquals(1, notes.getQuantity20());
         assertEquals(1, notes.getQuantity10());
         assertEquals(1, notes.getQuantity5());
-
-        String expected = "Baeldung";
-        String actual = "Baeldung";
-
-        assertEquals(expected, actual);
     }
 
 }

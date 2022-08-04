@@ -15,7 +15,7 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping("/getAccountDetails")
-    public User getAccount(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin) throws ZinWorksExeption {
+    public User getAccountDetails(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin) throws ZinWorksExeption {
         return accountService.getAccountDetails(accountNumber, pin);
     }
 
