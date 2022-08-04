@@ -1,0 +1,9 @@
+
+Jira 1:
+* issue: when user has zero amount then the user can dispense any amount
+  update in DispenseService to check if "account.getBalance() < amountRequested" and if it is then throw an exception
+add interfaces for service methods
+add logging (log4j)
+tidy up apierrors
+fix exceptions
+add docker image file
