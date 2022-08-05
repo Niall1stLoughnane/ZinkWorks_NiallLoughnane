@@ -4,7 +4,6 @@ import com.zinworks.exceptions.ZinWorksExeption;
 import com.zinworks.model.Account;
 import com.zinworks.model.DispensedAmount;
 import com.zinworks.repository.UserAccountRepository;
-import com.zinworks.validation.UserAccountValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -104,6 +103,24 @@ public class DispenseServiceTest {
 
     @Test
     public void testDispenseWhenAccountBalanceIsLessThanDispenseAmount() throws ZinWorksExeption {
+        Account mockAccount = Mockito.mock(Account.class);
+        when(mockAccount.getBalance()).thenReturn(3d);
+        when(mockAccount.getPin()).thenReturn("pin");
+        when(userAccountRepository.getAccount(eq("accountNumber"), eq("pin"), eq(true))).thenReturn(mockAccount);
+        when(atmService.getTotalAllowedDispenseAmount(3d)).thenReturn(30d);
+
+        try {
+            dispenseService.dispense("accountNumber", "pin", 30d);
+        } catch (ZinWorksExeption e) {
+            assertEquals("Dispense not allowed", e.getMessage());
+        }
+
+        verify(atmService).getTotalAllowedDispenseAmount(eq(3d));
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
+    }
+
+    @Test
+    public void testDispenseWhenAccountBalafnceIsZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
         when(mockAccount.getBalance()).thenReturn(3d);
         when(mockAccount.getPin()).thenReturn("pin");

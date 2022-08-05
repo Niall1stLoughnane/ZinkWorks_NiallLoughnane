@@ -44,9 +44,6 @@ public class DispenseService {
         if (dispenseAmount <= 0d) {
             throw new ZinWorksExeption("Dispense not allowed");
         }
-        if (account.getBalance() <= 0d) {
-            throw new ZinWorksExeption("Dispense not allowed");
-        }
         if (account.getBalance() < dispenseAmount) {
             throw new ZinWorksExeption("Dispense not allowed");
         }
