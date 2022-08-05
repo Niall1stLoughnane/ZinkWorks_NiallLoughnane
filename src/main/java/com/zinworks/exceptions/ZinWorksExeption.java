@@ -1,10 +1,10 @@
 package com.zinworks.exceptions;
 
-public class ZinWorksExeption extends Throwable {
+public abstract class ZinWorksExeption extends Throwable {
 
     private String message;
 
-    public ZinWorksExeption(String message) {
+    ZinWorksExeption(String message) {
         this.message = message;
     }
 

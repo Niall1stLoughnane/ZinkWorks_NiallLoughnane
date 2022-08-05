@@ -1,6 +1,7 @@
 package com.zinworks.controller;
 
-import com.zinworks.exceptions.ZinWorksExeption;
+import com.zinworks.exceptions.AccountNotExistExeption;
+import com.zinworks.exceptions.AtmZeroCashExeption;
 import com.zinworks.model.User;
 import com.zinworks.service.AccountServiceImpl;
 import com.zinworks.utils.LoggingUtils;
@@ -16,7 +17,7 @@ public class AccountController {
     private AccountServiceImpl accountService;
 
     @GetMapping("/getAccountDetails")
-    public User getAccountDetails(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin) throws ZinWorksExeption {
+    public User getAccountDetails(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin) throws AtmZeroCashExeption, AccountNotExistExeption {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), accountNumber, "Getting account details");
         return accountService.getAccountDetails(accountNumber, pin);
     }

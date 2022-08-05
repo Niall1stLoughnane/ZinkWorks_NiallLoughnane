@@ -1,6 +1,7 @@
 package com.zinworks.service;
 
-import com.zinworks.exceptions.ZinWorksExeption;
+import com.zinworks.exceptions.AccountNotExistExeption;
+import com.zinworks.exceptions.AtmZeroCashExeption;
 import com.zinworks.model.Account;
 import com.zinworks.model.User;
 import com.zinworks.repository.UserAccountRepository;
@@ -19,7 +20,7 @@ public class AccountServiceImpl implements AccountService {
     private AtmServiceImpl atmService;
 
     @Override
-    public User getAccountDetails(String accountNumber, String pin) throws ZinWorksExeption {
+    public User getAccountDetails(String accountNumber, String pin) throws AccountNotExistExeption, AtmZeroCashExeption {
 
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), accountNumber, "Getting account details");
 

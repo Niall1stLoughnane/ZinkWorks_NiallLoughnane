@@ -1,6 +1,7 @@
 package com.zinworks.repository;
 
-import com.zinworks.exceptions.ZinWorksExeption;
+import com.zinworks.exceptions.AccountNotExistExeption;
+import com.zinworks.exceptions.AccountNotValidatedExeption;
 import com.zinworks.model.Account;
 import com.zinworks.validation.UserAccountValidator;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,11 @@ public class UserAccountRepository {
         accountList.put("987654321", new Account("987654321", "4321 1230", 150));
     }
 
-    public Account getAccount(String accountNumber, String pin, boolean verifyPin) throws ZinWorksExeption {
+    public Account getAccount(String accountNumber, String pin, boolean verifyPin) throws AccountNotExistExeption, AccountNotValidatedExeption {
         Account account = accountList.get(accountNumber);
 
         if (account == null) {
-            throw new ZinWorksExeption("Account Doest exist: " + accountNumber);
+            throw new AccountNotExistExeption("Account Doest exist: " + accountNumber);
         }
 
         if (verifyPin) {

@@ -1,6 +1,6 @@
 package com.zinworks.service;
 
-import com.zinworks.exceptions.ZinWorksExeption;
+import com.zinworks.exceptions.AtmZeroCashExeption;
 import com.zinworks.model.Notes;
 import com.zinworks.repository.AtmRepository;
 import com.zinworks.utils.LoggingUtils;
@@ -15,7 +15,7 @@ public class AtmServiceImpl implements AtmService {
     private AtmRepository atmRepository;
 
     @Override
-    public double getTotalAllowedDispenseAmount(double amount) throws ZinWorksExeption {
+    public double getTotalAllowedDispenseAmount(double amount) throws AtmZeroCashExeption {
 
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(amount), "Getting total allowed dispensed amount = initial ["+ amount + "]");
 
@@ -23,7 +23,7 @@ public class AtmServiceImpl implements AtmService {
 
         if (balance <0 ) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(balance), "Exception thrown as balance in ATM is 0");
-            throw new ZinWorksExeption("Not enough money in ATM");
+            throw new AtmZeroCashExeption("Not enough money in ATM");
         }
 
         double totalAllowedDispenseAmount;

@@ -1,6 +1,9 @@
 package com.zinworks.service;
 
-import com.zinworks.exceptions.ZinWorksExeption;
+import com.zinworks.exceptions.AccountNotExistExeption;
+import com.zinworks.exceptions.AccountNotValidatedExeption;
+import com.zinworks.exceptions.AtmZeroCashExeption;
+import com.zinworks.exceptions.DispenseNotAllowedExeption;
 import com.zinworks.model.Account;
 import com.zinworks.model.DispensedAmount;
 import com.zinworks.repository.UserAccountRepository;
@@ -20,7 +23,7 @@ public class DispenseServiceImpl implements DispenseService{
     private AtmServiceImpl atmService;
 
     @Override
-    public DispensedAmount dispense(String accountNumber, String pin, double amountRequested) throws ZinWorksExeption {
+    public DispensedAmount dispense(String accountNumber, String pin, double amountRequested) throws AccountNotValidatedExeption, DispenseNotAllowedExeption, AtmZeroCashExeption, AccountNotExistExeption {
 
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), accountNumber, "Dispensing from account");
 
@@ -32,7 +35,7 @@ public class DispenseServiceImpl implements DispenseService{
 
         if (dispenseAmount <= 0d) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as dispense amount is0 or less - [account_number: " + accountNumber + "]");
-            throw new ZinWorksExeption("Dispense not allowed");
+            throw new DispenseNotAllowedExeption("Dispense not allowed");
         }
 
         dispenseAmount = atmService.getTotalAllowedDispenseAmount(dispenseAmount);
@@ -48,14 +51,14 @@ public class DispenseServiceImpl implements DispenseService{
         return new DispensedAmount(dispenseAmount);
     }
 
-    private void validateDispenseAmount(double dispenseAmount, Account account) throws ZinWorksExeption {
+    private void validateDispenseAmount(double dispenseAmount, Account account) throws DispenseNotAllowedExeption {
         if (dispenseAmount <= 0d) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as dispense amount is 0 or less " + dispenseAmount);
-            throw new ZinWorksExeption("Dispense not allowed");
+            throw new DispenseNotAllowedExeption("Dispense not allowed");
         }
         if (account.getBalance() < dispenseAmount) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as account balance is less than dispense amount: [account balance: " + account.getBalance() + "] - [dispense amount: "+ dispenseAmount + "]");
-            throw new ZinWorksExeption("Dispense not allowed");
+            throw new DispenseNotAllowedExeption("Dispense not allowed");
         }
     }
 

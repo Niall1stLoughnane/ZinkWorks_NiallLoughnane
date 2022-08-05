@@ -25,8 +25,6 @@ import java.util.zip.ZipException;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
-//import org.springframework.dao.DataIntegrityViolationException;
-
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 @Slf4j

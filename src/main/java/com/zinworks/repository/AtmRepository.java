@@ -1,7 +1,6 @@
 package com.zinworks.repository;
 
 import com.zinworks.model.Notes;
-import com.zinworks.utils.NotesUtil;
 import lombok.Data;
 import org.springframework.stereotype.Repository;
 
