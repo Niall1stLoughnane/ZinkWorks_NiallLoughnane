@@ -18,13 +18,10 @@ public class DispenseService {
     @Autowired
     private AtmService atmService;
 
-    @Autowired
-    private UserAccountValidator userAccountValidator;
-
     public DispensedAmount dispense(String accountNumber, String pin, double amountRequested) throws ZinWorksExeption {
         Account account = userAccountRepository.getAccount(accountNumber, pin, true);
 
-        userAccountValidator.vaidateAccount(account, pin);
+        UserAccountValidator.vaidateAccount(account, pin);
 
         double dispenseAmount = AmountUtil.getDispenseAmount(account, amountRequested);
 

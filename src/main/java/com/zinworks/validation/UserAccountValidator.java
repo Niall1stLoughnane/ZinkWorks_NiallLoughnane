@@ -5,10 +5,9 @@ import com.zinworks.model.Account;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-@Service
 public class UserAccountValidator {
 
-    public void vaidateAccount(Account account, String pin) throws ZinWorksExeption {
+    public static void vaidateAccount(Account account, String pin) throws ZinWorksExeption {
         if (!StringUtils.equals(account.getPin(), pin)) {
             throw new ZinWorksExeption("account not validated");
         }

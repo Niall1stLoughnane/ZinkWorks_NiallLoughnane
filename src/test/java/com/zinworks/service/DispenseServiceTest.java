@@ -29,13 +29,11 @@ public class DispenseServiceTest {
     @Mock
     private AtmService atmService = new AtmService();
 
-    @Mock
-    private UserAccountValidator userAccountValidator = new UserAccountValidator();
-
     @Test
     public void testDispense() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
         when(mockAccount.getBalance()).thenReturn(90d);
+        when(mockAccount.getPin()).thenReturn("pin");
         when(userAccountRepository.getAccount(eq("accountNumber"), eq("pin"), eq(true))).thenReturn(mockAccount);
         when(atmService.getTotalAllowedDispenseAmount(30d)).thenReturn(33d);
 
@@ -45,16 +43,16 @@ public class DispenseServiceTest {
         verify(atmService).getTotalAllowedDispenseAmount(eq(30d));
         verify(atmService).updateAtm(eq(33d));
         verify(mockAccount).setBalance(57d);
-        verify(userAccountValidator).vaidateAccount(eq(mockAccount), eq("pin"));
         ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
         verify(userAccountRepository).updateAccount(accountCaptor.capture());
         assertEquals(90, accountCaptor.getValue().getBalance());
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, userAccountValidator, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
     }
 
     @Test
     public void testDispenseWhenDispenseAmountIsZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
+        when(mockAccount.getPin()).thenReturn("pin");
         when(mockAccount.getBalance()).thenReturn(90d);
         when(userAccountRepository.getAccount(eq("accountNumber"), eq("pin"), eq(true))).thenReturn(mockAccount);
         when(atmService.getTotalAllowedDispenseAmount(30d)).thenReturn(0d);
@@ -66,14 +64,14 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(30d));
-        verify(userAccountValidator).vaidateAccount(eq(mockAccount), eq("pin"));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, userAccountValidator, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
     }
 
     @Test
     public void testDispenseWhenDispenseAmountIsLessThanZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
         when(mockAccount.getBalance()).thenReturn(90d);
+        when(mockAccount.getPin()).thenReturn("pin");
         when(userAccountRepository.getAccount(eq("accountNumber"), eq("pin"), eq(true))).thenReturn(mockAccount);
         when(atmService.getTotalAllowedDispenseAmount(30d)).thenReturn(-3d);
 
@@ -84,14 +82,14 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(30d));
-        verify(userAccountValidator).vaidateAccount(eq(mockAccount), eq("pin"));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, userAccountValidator, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
     }
 
     @Test
     public void testDispenseWhenAccountBalanceIsZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
         when(mockAccount.getBalance()).thenReturn(0d);
+        when(mockAccount.getPin()).thenReturn("pin");
         when(userAccountRepository.getAccount(eq("accountNumber"), eq("pin"), eq(true))).thenReturn(mockAccount);
 
         try {
@@ -100,15 +98,15 @@ public class DispenseServiceTest {
             assertEquals("Dispense not allowed", e.getMessage());
         }
 
-        verify(userAccountValidator).vaidateAccount(eq(mockAccount), eq("pin"));
         verifyZeroInteractions(atmService);
-        verifyNoMoreInteractions(userAccountRepository, userAccountRepository, userAccountValidator, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, userAccountRepository, mockAccount);
     }
 
     @Test
     public void testDispenseWhenAccountBalanceIsLessThanDispenseAmount() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
         when(mockAccount.getBalance()).thenReturn(3d);
+        when(mockAccount.getPin()).thenReturn("pin");
         when(userAccountRepository.getAccount(eq("accountNumber"), eq("pin"), eq(true))).thenReturn(mockAccount);
         when(atmService.getTotalAllowedDispenseAmount(3d)).thenReturn(30d);
 
@@ -119,9 +117,7 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(3d));
-        verify(userAccountValidator).vaidateAccount(eq(mockAccount), eq("pin"));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, userAccountValidator, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
     }
-
 
 }
