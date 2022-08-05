@@ -4,22 +4,30 @@ import com.zinworks.exceptions.AccountNotExistExeption;
 import com.zinworks.exceptions.AccountNotValidatedExeption;
 import com.zinworks.exceptions.AtmZeroCashExeption;
 import com.zinworks.exceptions.DispenseNotAllowedExeption;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.handler.DispatcherServletWebRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class RestExceptionHandlerTest {
 
@@ -28,6 +36,7 @@ public class RestExceptionHandlerTest {
     private static final BindingResult mockBindingResult = Mockito.mock(BindingResult.class);
     private static final WebRequest mockWebRequest = mock(ServletWebRequest.class);
 
+    @DisplayName("Test - RestExceptionHandlerTest - testMissingServletRequestParameterException")
     @Test
     public void testMissingServletRequestParameterException() {
         MissingServletRequestParameterException missingServletRequestParameterException = new MissingServletRequestParameterException("parameterName", "parameterType");
@@ -39,8 +48,10 @@ public class RestExceptionHandlerTest {
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "type parameterType is not present, subErrors=null)";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verifyNoInteractions(mockMethodParameter, mockBindingResult,mockWebRequest);
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testHttpMediaTypeNotSupportedException")
     @Test
     public void testHttpMediaTypeNotSupportedException() {
         HttpMediaTypeNotSupportedException missingServletRequestParameterException = new HttpMediaTypeNotSupportedException("message");
@@ -52,8 +63,11 @@ public class RestExceptionHandlerTest {
         String bodyStart = "ApiError(status=415 UNSUPPORTED_MEDIA_TYPE, ";
         String bodyEnd = "message=null media type is not supported. Supported media types ar";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verify(mockBindingResult).getFieldErrors();
+        verify(mockBindingResult).getGlobalErrors();
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testMethodArgumentNotValidException")
     @Test
     public void testMethodArgumentNotValidException() {
         MethodArgumentNotValidException methodArgumentNotValidException = new MethodArgumentNotValidException(mockMethodParameter, mockBindingResult);
@@ -65,8 +79,11 @@ public class RestExceptionHandlerTest {
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "message=Validation error";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verify(mockBindingResult).getFieldErrors();
+        verify(mockBindingResult).getGlobalErrors();
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testHandleAtmZeroCashExeption")
     @Test
     public void testHandleAtmZeroCashExeption() {
         AtmZeroCashExeption atmZeroCashExeption = new AtmZeroCashExeption("message", 1l);
@@ -80,6 +97,7 @@ public class RestExceptionHandlerTest {
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testHandleDispenseNotAllowedExeption")
     @Test
     public void testHandleDispenseNotAllowedExeption() {
         DispenseNotAllowedExeption dispenseNotAllowedExeption = new DispenseNotAllowedExeption("message", 1l);
@@ -91,8 +109,25 @@ public class RestExceptionHandlerTest {
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "message=message, debugMessage=null, subErrors=null)";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verifyNoInteractions(mockMethodParameter, mockBindingResult,mockWebRequest);
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testHandleDispenseNotAllowedExeption")
+    @Test
+    public void testRestExceptionHandler() {
+        DispenseNotAllowedExeption dispenseNotAllowedExeption = new DispenseNotAllowedExeption("message", 1l);
+
+        ResponseEntity<Object> result = restExceptionHandler.handleDispenseNotAllowedExeption (dispenseNotAllowedExeption);
+
+        HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
+        int expectedStatusCodeValue = 400;
+        String bodyStart = "ApiError(status=400 BAD_REQUEST";
+        String bodyEnd = "message=message, debugMessage=null, subErrors=null)";
+        assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verifyNoInteractions(mockMethodParameter, mockBindingResult,mockWebRequest);
+    }
+
+    @DisplayName("Test - RestExceptionHandlerTest - testHandleAccountNotValidatedExeption")
     @Test
     public void testHandleAccountNotValidatedExeption() {
         AccountNotValidatedExeption accountNotValidatedExeption = new AccountNotValidatedExeption("message", 1l);
@@ -104,8 +139,10 @@ public class RestExceptionHandlerTest {
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "message=message, debugMessage=null, subErrors=null)";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verifyNoInteractions(mockMethodParameter, mockBindingResult,mockWebRequest);
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testHandleAccountNotExistExeption")
     @Test
     public void testHandleAccountNotExistExeption() {
         AccountNotExistExeption accountNotExistExeption = new AccountNotExistExeption("message", 1l);
@@ -119,6 +156,7 @@ public class RestExceptionHandlerTest {
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
     }
 
+    @DisplayName("Test - RestExceptionHandlerTest - testHttpMessageNotReadableException")
     @Test
     public void testHttpMessageNotReadableException() {
         MethodArgumentNotValidException methodArgumentNotValidException = new MethodArgumentNotValidException(mockMethodParameter, mockBindingResult);
@@ -129,6 +167,53 @@ public class RestExceptionHandlerTest {
         int expectedStatusCodeValue = 400;
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "message=Validation error";
+        assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+    }
+
+    @DisplayName("Test - RestExceptionHandlerTest - testHttpMessageNotWritableException")
+    @Test
+    public void testHttpMessageNotWritableException() {
+        HttpMessageNotWritableException httpMessageNotWritableException = new HttpMessageNotWritableException("message");
+
+        ResponseEntity<Object> result = restExceptionHandler.handleHttpMessageNotWritable(httpMessageNotWritableException, HttpHeaders.EMPTY, HttpStatus.BAD_REQUEST, mockWebRequest);
+
+        HttpStatus expectedHttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        int expectedStatusCodeValue = 500;
+        String bodyStart = "ApiError(status=500 INTERNAL_SERVER_ERROR";
+        String bodyEnd = "message=Error writing JSON output";
+        assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verify(mockBindingResult).getFieldErrors();
+        verify(mockBindingResult).getGlobalErrors();
+    }
+
+    @DisplayName("Test - RestExceptionHandlerTest - testHandleHttpMessageNotReadable")
+    @Test
+    public void testHandleHttpMessageNotReadable() {
+        HttpMessageNotReadableException httpMessageNotReadableException = new HttpMessageNotReadableException("message");
+        HttpServletRequest mockHttpServletRequest = Mockito.mock(HttpServletRequest.class);
+        HttpServletResponse mockHttpServletResponse = Mockito.mock(HttpServletResponse.class);
+        ServletWebRequest mockServletWebRequest = new DispatcherServletWebRequest(mockHttpServletRequest, mockHttpServletResponse);
+
+        ResponseEntity<Object> result = restExceptionHandler.handleHttpMessageNotReadable(httpMessageNotReadableException, HttpHeaders.EMPTY, HttpStatus.BAD_REQUEST, mockServletWebRequest);
+
+        HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
+        int expectedStatusCodeValue = 400;
+        String bodyStart = "ApiError(status=400 BAD_REQUEST";
+        String bodyEnd = "message=Malformed JSON request";
+        assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+        verify(mockHttpServletRequest).getMethod();
+    }
+
+    @Test
+    public void testHandleMethodArgumentTypeMismatch() {
+        MethodArgumentTypeMismatchException mockMethodTypeMismatchException = Mockito.mock(MethodArgumentTypeMismatchException.class);
+
+        ResponseEntity<Object> result = restExceptionHandler.handleMethodArgumentTypeMismatch(mockMethodTypeMismatchException, mockWebRequest);
+
+        HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
+        int expectedStatusCodeValue = 400;
+        String bodyStart = "ApiError(status=400 BAD_REQUEST";
+        String bodyEnd = "could not be converted to type";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
     }
 

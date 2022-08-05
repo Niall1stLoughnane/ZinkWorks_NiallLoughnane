@@ -1,6 +1,7 @@
 package com.zinworks.errors;
 
 import com.zinworks.exceptions.AccountNotExistExeption;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ApiErrorTest {
 
+    @DisplayName("Test - ApiErrorTest - testApiErrorWithHttpStatusBadRequest")
     @Test
     public void testApiErrorWithHttpStatusBadRequest() {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST);
@@ -23,6 +25,7 @@ public class ApiErrorTest {
         assertNull(apiError.getDebugMessage());
     }
 
+    @DisplayName("Test - ApiErrorTest - testApiErrorWithHttpStatusBadRequestAndMessageAndThrowble")
     @Test
     public void testApiErrorWithHttpStatusBadRequestAndMessageAndThrowble() {
         AccountNotExistExeption accountNotExistExeption = new AccountNotExistExeption("accountNotExistExeptionMessage", 1l);
@@ -35,6 +38,7 @@ public class ApiErrorTest {
         assertEquals("accountNotExistExeptionMessage", apiError.getDebugMessage());
     }
 
+    @DisplayName("Test - ApiErrorTest - testAddValidationErrors")
     @Test
     public void testAddValidationErrors() {
         FieldError fieldError = new FieldError("objectName", "field", "defaultMessage");
@@ -51,6 +55,7 @@ public class ApiErrorTest {
         assertEquals(2, apiError.getSubErrors().size());
     }
 
+    @DisplayName("Test - ApiErrorTest - testAddValidationError")
     @Test
     public void testAddValidationError() {
         ObjectError objectError = new ObjectError("objectName", "defaultMessage");

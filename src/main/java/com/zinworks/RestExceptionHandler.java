@@ -1,7 +1,10 @@
 package com.zinworks;
 
 import com.zinworks.errors.ApiError;
-import com.zinworks.exceptions.*;
+import com.zinworks.exceptions.AccountNotExistExeption;
+import com.zinworks.exceptions.AccountNotValidatedExeption;
+import com.zinworks.exceptions.AtmZeroCashExeption;
+import com.zinworks.exceptions.DispenseNotAllowedExeption;
 import com.zinworks.utils.LoggingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -19,11 +22,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
@@ -170,7 +171,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
                                                                       WebRequest request) {
         ApiError apiError = new ApiError(BAD_REQUEST);
-        apiError.setMessage(String.format("The parameter '%s' of value '%s' could not be converted to type '%s'", ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName()));
+        apiError.setMessage(String.format("The parameter '%s' of value '%s' could not be converted to type", ex.getName(), ex.getValue()));
         apiError.setDebugMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
