@@ -4,7 +4,7 @@ Jira 1:
   update in DispenseService to check if "account.getBalance() < amountRequested" and if it is then throw an exception
 - add interfaces for service methods (20220804 (20220804)
 - add logging (log4j) (20220804)
-tidy up apierrors
+- tidy up apierrors (20220805)
 - fix exceptions (20220804)
 add docker image file
 - update individual exceptions (20220804)

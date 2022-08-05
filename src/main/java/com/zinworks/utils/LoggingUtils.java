@@ -3,7 +3,9 @@ package com.zinworks.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LoggingUtils {
+public final class LoggingUtils {
+
+    private LoggingUtils(){}
 
     private static final Logger logger = LoggerFactory.getLogger(LoggingUtils.class);
 
@@ -11,10 +13,15 @@ public class LoggingUtils {
         switch (level) {
             case "INFO" :
                 logger.info("INFO|||" + cllass + "|||" + detail + "|||" + message);
+                return;
             case "ERROR" :
                 logger.error("ERROR|||" + cllass + "|||" + detail + "|||" + message);
+                return;
             case "DEBUG" :
                 logger.error("DEBUG|||" + cllass + "|||" + detail + "|||" + message);
+                return;
+            default:
+                logger.info("INFO|||" + cllass + "|||" + detail + "|||" + message);
         }
     }
 }

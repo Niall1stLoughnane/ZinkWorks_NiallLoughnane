@@ -13,6 +13,8 @@ import com.zinworks.validation.UserAccountValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.zinworks.ZinWorksConstants.EXCEPTION_DISPENSE_NOT_ALLOWED;
+
 @Service
 public class DispenseServiceImpl implements DispenseService{
 
@@ -35,7 +37,7 @@ public class DispenseServiceImpl implements DispenseService{
 
         if (dispenseAmount <= 0d) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as dispense amount is0 or less - [account_number: " + accountNumber + "]");
-            throw new DispenseNotAllowedExeption("Dispense not allowed", System.currentTimeMillis());
+            throw new DispenseNotAllowedExeption(EXCEPTION_DISPENSE_NOT_ALLOWED, System.currentTimeMillis());
         }
 
         dispenseAmount = atmService.getTotalAllowedDispenseAmount(dispenseAmount);

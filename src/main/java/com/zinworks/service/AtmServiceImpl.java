@@ -26,17 +26,20 @@ public class AtmServiceImpl implements AtmService {
             throw new AtmZeroCashExeption("Not enough money in ATM", System.currentTimeMillis());
         }
 
-        double totalAllowedDispenseAmount;
-
-        if (balance < amount) {
-            totalAllowedDispenseAmount = balance;
-        } else {
-            totalAllowedDispenseAmount = amount;
-        }
+        double totalAllowedDispenseAmount = getTotalAllowedDispenseAmount(amount, balance);
 
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(totalAllowedDispenseAmount), "Total Allowed smount is " + totalAllowedDispenseAmount);
 
         return totalAllowedDispenseAmount;
+    }
+
+    private double getTotalAllowedDispenseAmount(double amount, double balance) {
+
+        if (balance < amount) {
+            return balance;
+        }
+
+        return amount;
     }
 
     @Override

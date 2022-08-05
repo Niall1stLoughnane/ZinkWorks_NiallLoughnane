@@ -1,10 +1,7 @@
 package com.zinworks;
 
 import com.zinworks.errors.ApiError;
-import com.zinworks.exceptions.AccountNotExistExeption;
-import com.zinworks.exceptions.AccountNotValidatedExeption;
-import com.zinworks.exceptions.AtmZeroCashExeption;
-import com.zinworks.exceptions.DispenseNotAllowedExeption;
+import com.zinworks.exceptions.*;
 import com.zinworks.utils.LoggingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -22,9 +19,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice

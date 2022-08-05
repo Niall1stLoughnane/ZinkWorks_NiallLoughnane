@@ -5,7 +5,9 @@ import com.zinworks.model.Account;
 import com.zinworks.utils.LoggingUtils;
 import org.apache.commons.lang3.StringUtils;
 
-public class UserAccountValidator {
+public final class UserAccountValidator {
+
+    private UserAccountValidator(){}
 
     public static void vaidateAccount(Account account, String pin) throws AccountNotValidatedExeption {
         LoggingUtils.logMessage("INFO", "UserAccountValidator", account.getAccountNumber(), "validating account");

@@ -2,6 +2,6 @@ package com.zinworks;
 
 public interface ZinWorksConstants {
 
-    public static final String EXCEPTION = "";
+    String EXCEPTION_DISPENSE_NOT_ALLOWED = "Dispense not allowed";
 
 }

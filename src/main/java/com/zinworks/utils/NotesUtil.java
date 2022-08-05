@@ -3,7 +3,9 @@ package com.zinworks.utils;
 import com.zinworks.model.IndividualNotes;
 import com.zinworks.model.Notes;
 
-public class NotesUtil {
+public final class NotesUtil {
+
+    private NotesUtil(){}
 
     public static Notes getNotes(double amount) {
         Notes notes = new Notes();
