@@ -1,11 +1,13 @@
 package com.zinworks.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DispensedAmountTest {
 
+    @DisplayName("Test - DispensedAmountTest - testConstructor")
     @Test
     public void testConstructor() {
         DispensedAmount dispensedAmount = new DispensedAmount(935d);

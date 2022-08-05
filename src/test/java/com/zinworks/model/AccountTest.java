@@ -1,12 +1,14 @@
 package com.zinworks.model;
 
 import org.assertj.core.error.future.Warning;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTest {
 
+    @DisplayName("Test - AccountTest - testConstructor")
     @Test
     public void testConstructor() {
         Account account = new Account("accountNumber", "pin", 30);

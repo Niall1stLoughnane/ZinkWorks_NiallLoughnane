@@ -4,6 +4,7 @@ import com.zinworks.exceptions.ZinWorksExeption;
 import com.zinworks.model.Account;
 import com.zinworks.model.DispensedAmount;
 import com.zinworks.repository.UserAccountRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -28,6 +29,7 @@ public class DispenseServiceTest {
     @Mock
     private AtmServiceImpl atmService = new AtmServiceImpl();
 
+    @DisplayName("Test - DispenseServiceTest - testDispense")
     @Test
     public void testDispense() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
@@ -48,6 +50,7 @@ public class DispenseServiceTest {
         verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
+    @DisplayName("Test - DispenseServiceTest - testDispenseWhenDispenseAmountIsZero")
     @Test
     public void testDispenseWhenDispenseAmountIsZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
@@ -66,6 +69,7 @@ public class DispenseServiceTest {
         verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
+    @DisplayName("Test - DispenseServiceTest - testDispenseWhenDispenseAmountIsLessThanZero")
     @Test
     public void testDispenseWhenDispenseAmountIsLessThanZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
@@ -84,6 +88,7 @@ public class DispenseServiceTest {
         verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
+    @DisplayName("Test - DispenseServiceTest - testDispenseWhenAccountBalanceIsZero")
     @Test
     public void testDispenseWhenAccountBalanceIsZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
@@ -101,6 +106,7 @@ public class DispenseServiceTest {
         verifyNoMoreInteractions(userAccountRepository, userAccountRepository);
     }
 
+    @DisplayName("Test - DispenseServiceTest - testDispenseWhenAccountBalanceIsLessThanDispenseAmount")
     @Test
     public void testDispenseWhenAccountBalanceIsLessThanDispenseAmount() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);
@@ -119,6 +125,7 @@ public class DispenseServiceTest {
         verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
+    @DisplayName("Test - DispenseServiceTest - testDispenseWhenAccountBalafnceIsZero")
     @Test
     public void testDispenseWhenAccountBalafnceIsZero() throws ZinWorksExeption {
         Account mockAccount = Mockito.mock(Account.class);

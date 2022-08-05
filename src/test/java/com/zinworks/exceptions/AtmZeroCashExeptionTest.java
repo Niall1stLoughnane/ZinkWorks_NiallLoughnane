@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AtmZeroCashExeptionTest {
 
-    @DisplayName("Test - AccountNotExistExeptionTest - testException")
+    @DisplayName("Test - AtmZeroCashExeptionTest - testException")
     @Test
     public void testException() {
         AtmZeroCashExeption atmZeroCashExeption = new AtmZeroCashExeption("message", System.currentTimeMillis());

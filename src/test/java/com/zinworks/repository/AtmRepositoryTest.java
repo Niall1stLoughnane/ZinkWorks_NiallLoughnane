@@ -1,12 +1,14 @@
 package com.zinworks.repository;
 
 import com.zinworks.model.Notes;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AtmRepositoryTest {
 
+    @DisplayName("Test - AtmRepositoryTest - testInitialize")
     @Test
     public void testInitialize() {
         AtmRepository atmRepository = new AtmRepository();
@@ -23,6 +25,7 @@ public class AtmRepositoryTest {
         assertEquals(20, notes.getQuantity5());
     }
 
+    @DisplayName("Test - AtmRepositoryTest - testUpdateBalanceAndNotes")
     @Test
     public void testUpdateBalanceAndNotes() {
         AtmRepository atmRepository = new AtmRepository();

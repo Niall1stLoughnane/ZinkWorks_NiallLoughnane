@@ -11,7 +11,7 @@ public class UserAccountValidator {
         LoggingUtils.logMessage("INFO", "UserAccountValidator", account.getAccountNumber(), "validating account");
         if (!StringUtils.equals(account.getPin(), pin)) {
             LoggingUtils.logMessage("ERROR", "UserAccountValidator", account.getAccountNumber(), "pins are not the same: [pin:" + pin +"]" );
-            throw new AccountNotValidatedExeption("account not validated- [Account_Number: " + account.getAccountNumber() + "]", System.currentTimeMillis());
+            throw new AccountNotValidatedExeption("account not validated", System.currentTimeMillis());
         }
     }
 

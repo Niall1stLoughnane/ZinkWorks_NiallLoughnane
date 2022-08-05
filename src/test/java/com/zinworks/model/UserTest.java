@@ -1,11 +1,13 @@
 package com.zinworks.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
 
+    @DisplayName("Test - UserTest - testConstructor")
     @Test
     public void test() {
         User user = new User("accountNumber", 9d, 7d);

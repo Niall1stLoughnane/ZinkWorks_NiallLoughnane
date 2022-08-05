@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 public class AmountUtilTest {
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AmountUtilTest - testAmountUtilWhenAccountBalanceIsLessThanAmountRequested")
     @Test
     public void testAmountUtilWhenAccountBalanceIsLessThanAmountRequested() {
         Account mockAccount = Mockito.mock(Account.class);
@@ -23,7 +23,7 @@ public class AmountUtilTest {
         verifyNoMoreInteractions(mockAccount);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AmountUtilTest - testAmountUtilWhenAccountBalanceIsMoreThanAmountRequested")
     @Test
     public void testAmountUtilWhenAccountBalanceIsMoreThanAmountRequested() {
         Account mockAccount = Mockito.mock(Account.class);
@@ -36,7 +36,7 @@ public class AmountUtilTest {
         verifyNoMoreInteractions(mockAccount);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AmountUtilTest - testAmountUtilWhenAccountBalanceIsEqualsAmountRequested")
     @Test
     public void testAmountUtilWhenAccountBalanceIsEqualsAmountRequested() {
         Account mockAccount = Mockito.mock(Account.class);

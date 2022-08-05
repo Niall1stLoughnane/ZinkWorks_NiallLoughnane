@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NotesUtilTest {
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - NotesUtilTest - testNotesUtil")
     @Test
     public void testNotesUtil() {
         Notes notes = NotesUtil.getNotes(235);

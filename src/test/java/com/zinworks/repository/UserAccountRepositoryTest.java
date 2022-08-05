@@ -2,6 +2,7 @@ package com.zinworks.repository;
 
 import com.zinworks.exceptions.ZinWorksExeption;
 import com.zinworks.model.Account;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -10,6 +11,7 @@ import static org.mockito.Mockito.when;
 
 public class UserAccountRepositoryTest {
 
+    @DisplayName("Test - UserAccountRepositoryTest - testInitialize")
     @Test
     public void testInitialize() throws ZinWorksExeption {
         UserAccountRepository userAccountRepository = new UserAccountRepository();
@@ -32,6 +34,7 @@ public class UserAccountRepositoryTest {
         }
     }
 
+    @DisplayName("Test - UserAccountRepositoryTest - testUpdateAccount")
     @Test
     public void testUpdateAccount() {
         UserAccountRepository userAccountRepository = new UserAccountRepository();

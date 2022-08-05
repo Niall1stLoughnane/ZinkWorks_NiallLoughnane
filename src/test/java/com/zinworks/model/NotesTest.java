@@ -1,11 +1,13 @@
 package com.zinworks.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NotesTest {
 
+    @DisplayName("Test - NotesTest - testConstructor")
     @Test
     public void testConstructor() {
         Notes notes = new Notes();

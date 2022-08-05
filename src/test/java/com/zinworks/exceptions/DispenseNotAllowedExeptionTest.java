@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DispenseNotAllowedExeptionTest {
 
-    @DisplayName("Test - AccountNotExistExeptionTest - testException")
+    @DisplayName("Test - DispenseNotAllowedExeptionTest - testException")
     @Test
     public void testException() {
         DispenseNotAllowedExeption dispenseNotAllowedExeption = new DispenseNotAllowedExeption("message", System.currentTimeMillis());

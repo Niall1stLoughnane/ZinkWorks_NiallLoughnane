@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AccountNotValidatedExeptionTest {
 
-    @DisplayName("Test - AccountNotExistExeptionTest - testException")
+    @DisplayName("Test - AccountNotValidatedExeptionTest - testException")
     @Test
     public void testException() {
         AccountNotValidatedExeption accountNotValidatedExeption = new AccountNotValidatedExeption("message", System.currentTimeMillis());
