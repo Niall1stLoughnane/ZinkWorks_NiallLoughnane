@@ -5,9 +5,9 @@ Jira 1:
 - add interfaces for service methods (20220804 (20220804)
 - add logging (log4j) (20220804)
 tidy up apierrors
-fix exceptions
+- fix exceptions (20220804)
 add docker image file
-update individual exceptions
+- update individual exceptions (20220804)
 fix sonarlint issues
 get test coverage over 95%
 add swagger
