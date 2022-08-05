@@ -25,7 +25,7 @@ public class AtmServiceTest {
     @Mock
     private AtmRepository atmRepository = new AtmRepository();
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AtmServiceTest - testGetTotalAllowedDispenseAmountWhenBalanceIsLessThanAmount")
     @Test
     void testGetTotalAllowedDispenseAmountWhenBalanceIsLessThanAmount() throws ZinWorksExeption {
         when(atmRepository.getBalance()).thenReturn(90d);
@@ -37,7 +37,7 @@ public class AtmServiceTest {
         verifyNoMoreInteractions(atmRepository);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AtmServiceTest - testGetTotalAllowedDispenseAmountWhenBalanceIsGreaterThanAmount")
     @Test
     void testGetTotalAllowedDispenseAmountWhenBalanceIsGreaterThanAmount() throws ZinWorksExeption {
         when(atmRepository.getBalance()).thenReturn(90d);
@@ -49,7 +49,7 @@ public class AtmServiceTest {
         verifyNoMoreInteractions(atmRepository);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AtmServiceTest - testGetTotalAllowedDispenseAmountWhenBalanceIsEqualsThanAmount")
     @Test
     void testGetTotalAllowedDispenseAmountWhenBalanceIsEqualsThanAmount() throws ZinWorksExeption {
         when(atmRepository.getBalance()).thenReturn(90d);
@@ -61,7 +61,7 @@ public class AtmServiceTest {
         verifyNoMoreInteractions(atmRepository);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AtmServiceTest - testGetTotalAllowedDispenseAmountWhenBalanceIsLessThan0")
     @Test
     void testGetTotalAllowedDispenseAmountWhenBalanceIsLessThan0() throws ZinWorksExeption {
         when(atmRepository.getBalance()).thenReturn(-1d);
@@ -76,7 +76,7 @@ public class AtmServiceTest {
         verifyNoMoreInteractions(atmRepository);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AtmServiceTest - testGetTotalAllowedDispenseAmountWhenBalanceIsZero")
     @Test
     void testGetTotalAllowedDispenseAmountWhenBalanceIsZero() throws ZinWorksExeption {
         when(atmRepository.getBalance()).thenReturn(0d);
@@ -88,7 +88,8 @@ public class AtmServiceTest {
         verifyNoMoreInteractions(atmRepository);
     }
 
-    @DisplayName("Test - ")
+    @DisplayName("Test - AtmServiceTest - testUpdateAtm")
+    @Test
     public void testUpdateAtm() {
         when(atmRepository.getBalance()).thenReturn(1500d);
 

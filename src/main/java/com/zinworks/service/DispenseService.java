@@ -24,7 +24,13 @@ public class DispenseService {
     public DispensedAmount dispense(String accountNumber, String pin, double amountRequested) throws ZinWorksExeption {
         Account account = userAccountRepository.getAccount(accountNumber, pin, true);
 
+        userAccountValidator.vaidateAccount(account, pin);
+
         double dispenseAmount = AmountUtil.getDispenseAmount(account, amountRequested);
+
+        if (dispenseAmount <= 0d) {
+            throw new ZinWorksExeption("Dispense not allowed");
+        }
 
         dispenseAmount = atmService.getTotalAllowedDispenseAmount(dispenseAmount);
 
@@ -38,10 +44,10 @@ public class DispenseService {
     }
 
     private void validateDispenseAmount(double dispenseAmount, Account account) throws ZinWorksExeption {
-        if (dispenseAmount == 0d) {
+        if (dispenseAmount <= 0d) {
             throw new ZinWorksExeption("Dispense not allowed");
         }
-        if (account.getBalance() == 0d) {
+        if (account.getBalance() <= 0d) {
             throw new ZinWorksExeption("Dispense not allowed");
         }
         if (account.getBalance() < dispenseAmount) {

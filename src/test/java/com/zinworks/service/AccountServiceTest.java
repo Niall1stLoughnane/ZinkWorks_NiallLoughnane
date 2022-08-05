@@ -42,9 +42,8 @@ public class AccountServiceTest {
 
         assertEquals("accountNumber", result.getAccountNumber());
         assertEquals(90d, result.getAllowedWithdrawalAmount());
-        assertEquals(90d, result.getBalance());
+        assertEquals(30d, result.getBalance());
         Mockito.verify(userAccountRepository).getAccount(anyString(), anyString(), eq(true));
-        Mockito.verify(mockAccount).getBalance();
         Mockito.verify(atmService).getTotalAllowedDispenseAmount(eq(30d));
         verifyNoMoreInteractions(userAccountRepository, mockAccount, atmService);
     }
