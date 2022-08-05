@@ -1,6 +1,7 @@
 package com.zinworks;
 
 import com.zinworks.exceptions.*;
+import com.zinworks.utils.LoggingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -106,17 +107,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-    @ExceptionHandler(ZipException.class)
-    protected ResponseEntity<Object> handleZipException(
-            ZipException ex) {
-        ApiError apiError = new ApiError(NOT_FOUND);
-        apiError.setMessage(ex.getMessage());
-        return buildResponseEntity(apiError);
-    }
-
     @ExceptionHandler(AtmZeroCashExeption.class)
     protected ResponseEntity<Object> handleAtmZeroCashExeption (
             AtmZeroCashExeption ex) {
+        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Integer.toString(ex.getId()), "AtmZeroCashExeption is being handeld");
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -125,6 +119,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DispenseNotAllowedExeption.class)
     protected ResponseEntity<Object> handleDispenseNotAllowedExeption (
             DispenseNotAllowedExeption ex) {
+        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Integer.toString(ex.getId()), "DispenseNotAllowedExeption is being handeld");
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -133,6 +128,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccountNotValidatedExeption.class)
     protected ResponseEntity<Object> handleAccountNotValidatedExeption (
             AccountNotValidatedExeption ex) {
+        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Integer.toString(ex.getId()), "AccountNotValidatedExeption is being handeld");
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -141,6 +137,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccountNotExistExeption.class)
     protected ResponseEntity<Object> handleAccountNotExistExeption (
             AccountNotExistExeption ex) {
+        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Integer.toString(ex.getId()), "AccountNotExistExeption is being handeld");
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);

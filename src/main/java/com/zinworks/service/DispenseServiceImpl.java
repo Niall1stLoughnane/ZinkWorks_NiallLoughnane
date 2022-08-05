@@ -35,7 +35,7 @@ public class DispenseServiceImpl implements DispenseService{
 
         if (dispenseAmount <= 0d) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as dispense amount is0 or less - [account_number: " + accountNumber + "]");
-            throw new DispenseNotAllowedExeption("Dispense not allowed");
+            throw new DispenseNotAllowedExeption("Dispense not allowed", System.currentTimeMillis());
         }
 
         dispenseAmount = atmService.getTotalAllowedDispenseAmount(dispenseAmount);
@@ -54,11 +54,11 @@ public class DispenseServiceImpl implements DispenseService{
     private void validateDispenseAmount(double dispenseAmount, Account account) throws DispenseNotAllowedExeption {
         if (dispenseAmount <= 0d) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as dispense amount is 0 or less " + dispenseAmount);
-            throw new DispenseNotAllowedExeption("Dispense not allowed");
+            throw new DispenseNotAllowedExeption("Dispense not allowed", System.currentTimeMillis());
         }
         if (account.getBalance() < dispenseAmount) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Exception thrown as account balance is less than dispense amount: [account balance: " + account.getBalance() + "] - [dispense amount: "+ dispenseAmount + "]");
-            throw new DispenseNotAllowedExeption("Dispense not allowed");
+            throw new DispenseNotAllowedExeption("Dispense not allowed", System.currentTimeMillis());
         }
     }
 

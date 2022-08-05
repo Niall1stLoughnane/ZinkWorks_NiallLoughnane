@@ -23,7 +23,7 @@ public class AtmServiceImpl implements AtmService {
 
         if (balance <0 ) {
             LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(balance), "Exception thrown as balance in ATM is 0");
-            throw new AtmZeroCashExeption("Not enough money in ATM");
+            throw new AtmZeroCashExeption("Not enough money in ATM", System.currentTimeMillis());
         }
 
         double totalAllowedDispenseAmount;
