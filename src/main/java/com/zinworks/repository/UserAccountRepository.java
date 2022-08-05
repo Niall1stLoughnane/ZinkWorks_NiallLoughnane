@@ -2,7 +2,7 @@ package com.zinworks.repository;
 
 import com.zinworks.exceptions.ZinWorksExeption;
 import com.zinworks.model.Account;
-import org.apache.commons.lang3.StringUtils;
+import com.zinworks.validation.UserAccountValidator;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -27,21 +27,15 @@ public class UserAccountRepository {
             throw new ZinWorksExeption("Account Doest exist: " + accountNumber);
         }
 
-        if (verifyPin && !StringUtils.equals(account.getPin(), pin)) {
-            throw new ZinWorksExeption("Account Doest exist: " + accountNumber);
+        if (verifyPin) {
+            UserAccountValidator.vaidateAccount(account, pin);
         }
 
         return account;
     }
 
 
-    public void updateAccount(Account account) throws ZinWorksExeption {
-        String accountNumber = account.getAccountNumber();
-
-        if (getAccount(accountNumber, "", false) == null) {
-            throw new ZinWorksExeption("account doesnt exist: " + accountNumber);
-        }
-
-        this.accountList.put(accountNumber, account);
+    public void updateAccount(Account account) {
+        this.accountList.put(account.getAccountNumber(), account);
     }
 }
