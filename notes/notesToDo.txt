@@ -14,7 +14,6 @@ add swagger
 add web pages
 tidy up pom.xml
 create overall constants class and check code
-add enum for log levels
 use String.format
 - exception logging to be updated (20220804)
 
