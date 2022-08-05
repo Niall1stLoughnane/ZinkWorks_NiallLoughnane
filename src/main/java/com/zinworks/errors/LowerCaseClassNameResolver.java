@@ -1,4 +1,4 @@
-package com.zinworks;
+package com.zinworks.errors;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.jsontype.impl.TypeIdResolverBase;

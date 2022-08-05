@@ -1,4 +1,4 @@
-package com.zinworks;
+package com.zinworks.errors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

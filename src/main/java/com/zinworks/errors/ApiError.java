@@ -1,8 +1,11 @@
-package com.zinworks;
+package com.zinworks.errors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
+import com.zinworks.errors.ApiSubError;
+import com.zinworks.errors.ApiValidationError;
+import com.zinworks.errors.LowerCaseClassNameResolver;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
