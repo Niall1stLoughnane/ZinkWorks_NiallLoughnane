@@ -1,7 +1,6 @@
 package com.zinworks;
 
 import com.zinworks.errors.ApiError;
-import com.zinworks.errors.EntityNotFoundException;
 import com.zinworks.exceptions.*;
 import com.zinworks.utils.LoggingUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -90,20 +89,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         apiError.setMessage("Validation error");
         apiError.addValidationErrors(ex.getBindingResult().getFieldErrors());
         apiError.addValidationError(ex.getBindingResult().getGlobalErrors());
-        return buildResponseEntity(apiError);
-    }
-
-    /**
-     * Handles EntityNotFoundException. Created to encapsulate errors with more detail than javax.persistence.EntityNotFoundException.
-     *
-     * @param ex the EntityNotFoundException
-     * @return the ApiError object
-     */
-    @ExceptionHandler(EntityNotFoundException.class)
-    protected ResponseEntity<Object> handleEntityNotFound(
-            EntityNotFoundException ex) {
-        ApiError apiError = new ApiError(NOT_FOUND);
-        apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
 

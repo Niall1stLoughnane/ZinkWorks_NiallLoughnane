@@ -11,8 +11,8 @@ public class ApiValidationErrorTest {
     public void testConstructor() {
         ApiValidationError apiValidationError = new ApiValidationError("object", "message");
 
-        assertEquals("message", ((ApiValidationError) apiValidationError).getMessage());
-        assertEquals("object", ((ApiValidationError) apiValidationError).getObject());
+        assertEquals("message", (apiValidationError).getMessage());
+        assertEquals("object", (apiValidationError).getObject());
         assertNull(((ApiValidationError) apiValidationError).getRejectedValue());
         assertNull(((ApiValidationError) apiValidationError).getField());
     }
