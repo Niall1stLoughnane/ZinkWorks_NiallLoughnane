@@ -1,6 +1,6 @@
 package com.zinworks;
 
-import com.zinworks.exceptions.ZinWorksExeption;
+import com.zinworks.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -114,9 +114,33 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-    @ExceptionHandler(ZinWorksExeption.class)
-    protected ResponseEntity<Object> handleZimWorksExeption (
-            ZinWorksExeption ex) {
+    @ExceptionHandler(AtmZeroCashExeption.class)
+    protected ResponseEntity<Object> handleAtmZeroCashExeption (
+            AtmZeroCashExeption ex) {
+        ApiError apiError = new ApiError(NOT_FOUND);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(DispenseNotAllowedExeption.class)
+    protected ResponseEntity<Object> handleDispenseNotAllowedExeption (
+            DispenseNotAllowedExeption ex) {
+        ApiError apiError = new ApiError(NOT_FOUND);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(AccountNotValidatedExeption.class)
+    protected ResponseEntity<Object> handleAccountNotValidatedExeption (
+            AccountNotValidatedExeption ex) {
+        ApiError apiError = new ApiError(NOT_FOUND);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(AccountNotExistExeption.class)
+    protected ResponseEntity<Object> handleAccountNotExistExeption (
+            AccountNotExistExeption ex) {
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
