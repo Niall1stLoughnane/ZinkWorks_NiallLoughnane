@@ -1,5 +1,6 @@
 package com.zinworks.model;
 
+import org.assertj.core.error.future.Warning;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

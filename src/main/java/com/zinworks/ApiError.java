@@ -12,9 +12,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.hibernate.validator.internal.engine.path.PathImpl;
-//import javax.validation.ConstraintViolation;
-
 @Data
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.CUSTOM, property = "error", visible = true)
 @JsonTypeIdResolver(LowerCaseClassNameResolver.class)
@@ -35,13 +32,6 @@ class ApiError {
     public ApiError(HttpStatus status) {
         this();
         this.status = status;
-    }
-
-    public ApiError(HttpStatus status, Throwable ex) {
-        this();
-        this.status = status;
-        this.message = "Unexpected error";
-        this.debugMessage = ex.getLocalizedMessage();
     }
 
     public ApiError(HttpStatus status, String message, Throwable ex) {
