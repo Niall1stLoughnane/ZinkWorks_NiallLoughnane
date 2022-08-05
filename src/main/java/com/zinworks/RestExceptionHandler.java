@@ -96,7 +96,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleAtmZeroCashExeption (
             AtmZeroCashExeption ex) {
         LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AtmZeroCashExeption is being handeld");
-        ApiError apiError = new ApiError(NOT_FOUND);
+        ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
@@ -105,7 +105,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleDispenseNotAllowedExeption (
             DispenseNotAllowedExeption ex) {
         LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "DispenseNotAllowedExeption is being handeld");
-        ApiError apiError = new ApiError(NOT_FOUND);
+        ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
@@ -114,7 +114,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleAccountNotValidatedExeption (
             AccountNotValidatedExeption ex) {
         LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AccountNotValidatedExeption is being handeld");
-        ApiError apiError = new ApiError(NOT_FOUND);
+        ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
@@ -123,7 +123,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleAccountNotExistExeption (
             AccountNotExistExeption ex) {
         LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AccountNotExistExeption is being handeld");
-        ApiError apiError = new ApiError(NOT_FOUND);
+        ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
     }
@@ -158,24 +158,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpMessageNotWritable(HttpMessageNotWritableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String error = "Error writing JSON output";
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, error, ex));
-    }
-
-    /**
-     * Handle NoHandlerFoundException.
-     *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
-     * @return
-     */
-    @Override
-    protected ResponseEntity<Object> handleNoHandlerFoundException(
-            NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ApiError apiError = new ApiError(BAD_REQUEST);
-        apiError.setMessage(String.format("Could not find the %s method for URL %s", ex.getHttpMethod(), ex.getRequestURL()));
-        apiError.setDebugMessage(ex.getMessage());
-        return buildResponseEntity(apiError);
     }
 
     /**
