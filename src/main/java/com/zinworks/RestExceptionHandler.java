@@ -1,4 +1,4 @@
-package com.zinworks.errors;
+package com.zinworks;
 
 import com.zinworks.exceptions.ZinWorksExeption;
 import lombok.extern.slf4j.Slf4j;

@@ -45,7 +45,7 @@ public class DispenseServiceTest {
         ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
         verify(userAccountRepository).updateAccount(accountCaptor.capture());
         assertEquals(90, accountCaptor.getValue().getBalance());
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(30d));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(30d));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class DispenseServiceTest {
         }
 
         verifyZeroInteractions(atmService);
-        verifyNoMoreInteractions(userAccountRepository, userAccountRepository, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, userAccountRepository);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(3d));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
     @Test
@@ -134,7 +134,7 @@ public class DispenseServiceTest {
         }
 
         verify(atmService).getTotalAllowedDispenseAmount(eq(3d));
-        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository, mockAccount);
+        verifyNoMoreInteractions(userAccountRepository, atmService, userAccountRepository);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.zinworks.errors;
+package com.zinworks;
 
 import org.apache.commons.lang3.StringUtils;
 

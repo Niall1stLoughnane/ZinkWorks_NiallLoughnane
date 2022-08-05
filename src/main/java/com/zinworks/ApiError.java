@@ -1,4 +1,4 @@
-package com.zinworks.errors;
+package com.zinworks;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

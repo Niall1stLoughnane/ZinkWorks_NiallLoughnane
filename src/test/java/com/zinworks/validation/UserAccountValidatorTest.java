@@ -18,7 +18,6 @@ public class UserAccountValidatorTest {
         UserAccountValidator.vaidateAccount(mockAccount, "pinSame");
 
         verify(mockAccount).getPin();
-        verifyNoMoreInteractions(mockAccount);
     }
 
     @Test
@@ -33,6 +32,5 @@ public class UserAccountValidatorTest {
         }
 
         verify(mockAccount).getPin();
-        verifyNoMoreInteractions(mockAccount);
     }
 }
