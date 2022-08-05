@@ -2,7 +2,7 @@
 Jira 1:
 * issue: when user has zero amount then the user can dispense any amount
   update in DispenseService to check if "account.getBalance() < amountRequested" and if it is then throw an exception
-add interfaces for service methods
+add interfaces for service methods (20220804
 add logging (log4j)
 tidy up apierrors
 fix exceptions
@@ -12,3 +12,9 @@ fix sonarlint issues
 get test coverage over 95%
 add swagger
 add web pages
+tidy up pom.xml
+create overall constants class and check code
+add enum for log levels
+use String.format
+
+
