@@ -22,4 +22,26 @@ public class AtmRepositoryTest {
         assertEquals(30, notes.getQuantity10());
         assertEquals(20, notes.getQuantity5());
     }
+
+    @Test
+    public void testUpdateBalanceAndNotes() {
+        AtmRepository atmRepository = new AtmRepository();
+        atmRepository.initialize();
+
+        Notes notesDispensed = new Notes();
+        notesDispensed.setQuantity50(3);
+        notesDispensed.setQuantity20(2);
+        notesDispensed.setQuantity10(1);
+        notesDispensed.setQuantity5(8);
+
+        atmRepository.updateBalanceAndNotes(300, notesDispensed);
+
+        assertEquals(300d, atmRepository.getBalance());
+        Notes notes = atmRepository.getNotes();
+        assertEquals(7, notes.getQuantity50());
+        assertEquals(28, notes.getQuantity20());
+        assertEquals(29, notes.getQuantity10());
+        assertEquals(12, notes.getQuantity5());
+
+    }
 }

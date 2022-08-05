@@ -26,7 +26,6 @@ public class AtmRepository {
     public void updateBalanceAndNotes(double balance, Notes notesDispensed) {
         this.setBalance(balance);
 
-        Notes notes = NotesUtil.getNotes(balance);
         this.notes.setQuantity50(this.notes.getQuantity50() - notesDispensed.getQuantity50());
         this.notes.setQuantity20(this.notes.getQuantity20() - notesDispensed.getQuantity20());
         this.notes.setQuantity10(this.notes.getQuantity10() - notesDispensed.getQuantity10());
