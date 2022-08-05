@@ -1,0 +1,10 @@
+
+* add the ability for a new user to ba added to the ATM and the info given back will include for now the pin since there is no email
+    functionality currently in the system
+- add the ability for a user to update their pin to a new pin if they provide their current pin as well as the new pin
+- add the ability for a user to add money into their account in the ATM - this will update both their own and the ATM current balance
+-
+-
+-
+-
+
