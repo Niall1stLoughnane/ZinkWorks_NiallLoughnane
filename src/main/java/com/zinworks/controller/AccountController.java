@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AccountController {
+class AccountController {
 
     @Autowired
     private AccountServiceImpl accountService;
 
     @GetMapping("/getAccountDetails")
-    public User getAccountDetails(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin) throws AtmZeroCashExeption, AccountNotExistExeption, AccountNotValidatedExeption {
+    User getAccountDetails(@RequestParam(name = "accountNumber") String accountNumber, @RequestParam(name = "pin") String pin) throws AtmZeroCashExeption, AccountNotExistExeption, AccountNotValidatedExeption {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), accountNumber, "Getting account details");
         return accountService.getAccountDetails(accountNumber, pin);
     }

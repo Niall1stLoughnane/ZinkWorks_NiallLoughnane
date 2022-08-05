@@ -16,7 +16,7 @@ public class UserAccountRepository {
     private Map<String, Account> accountList = new HashMap<>();
 
     @PostConstruct
-    public void initialize() {
+    void initialize() {
         accountList.put("123456789", new Account("123456789", "1234 800", 200));
         accountList.put("987654321", new Account("987654321", "4321 1230", 150));
     }

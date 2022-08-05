@@ -15,7 +15,7 @@ public class AtmRepository {
     private Notes notes;
 
     @PostConstruct
-    public void initialize() {
+    void initialize() {
         this.id = 1d;
         this.balance = 1500d;
         this.notes = new Notes();
@@ -29,6 +29,6 @@ public class AtmRepository {
         this.notes.setQuantity20(this.notes.getQuantity20() - notesDispensed.getQuantity20());
         this.notes.setQuantity10(this.notes.getQuantity10() - notesDispensed.getQuantity10());
         this.notes.setQuantity5(this.notes.getQuantity5() - notesDispensed.getQuantity5());
-
     }
+
 }

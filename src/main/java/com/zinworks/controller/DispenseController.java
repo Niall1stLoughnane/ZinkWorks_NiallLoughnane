@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.zip.ZipException;
 
 @RestController
-public class DispenseController {
+class DispenseController {
 
     @Autowired
     private DispenseServiceImpl dispenseService;
 
     @DeleteMapping("/dispenseAccount")
-    public DispensedAmount dispenseAccount(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin, @RequestParam(name="amountRequested") double amountRequested) throws ZinWorksExeption, ZipException {
+    DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") String accountNumber, @RequestParam(name = "pin") String pin, @RequestParam(name = "amountRequested") double amountRequested) throws ZinWorksExeption, ZipException {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), accountNumber, "Dispensing from account");
         return dispenseService.dispense(accountNumber, pin, amountRequested);
     }
