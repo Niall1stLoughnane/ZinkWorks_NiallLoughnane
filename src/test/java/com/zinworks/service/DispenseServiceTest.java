@@ -20,13 +20,13 @@ import static org.mockito.Mockito.*;
 public class DispenseServiceTest {
 
     @InjectMocks
-    private DispenseService dispenseService;
+    private DispenseServiceImpl dispenseService;
 
     @Mock
     private UserAccountRepository userAccountRepository;
 
     @Mock
-    private AtmService atmService = new AtmService();
+    private AtmServiceImpl atmService = new AtmServiceImpl();
 
     @Test
     public void testDispense() throws ZinWorksExeption {

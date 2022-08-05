@@ -2,7 +2,7 @@ package com.zinworks.controller;
 
 import com.zinworks.exceptions.ZinWorksExeption;
 import com.zinworks.model.DispensedAmount;
-import com.zinworks.service.DispenseService;
+import com.zinworks.service.DispenseServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class DispenseControllerTest {
     private DispenseController dispenseController = new DispenseController();
 
     @Mock
-    private DispenseService dispenseService;
+    private DispenseServiceImpl dispenseService;
 
     @DisplayName("Test - DispenseControllerTest - dispenseAccount")
     @Test

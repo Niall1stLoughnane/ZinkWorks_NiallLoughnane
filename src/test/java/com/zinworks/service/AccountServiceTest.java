@@ -22,13 +22,13 @@ import static org.mockito.Mockito.when;
 public class AccountServiceTest {
 
     @InjectMocks
-    private AccountService accountService= new AccountService();
+    private AccountServiceImpl accountService= new AccountServiceImpl();
 
     @Mock
     private UserAccountRepository userAccountRepository = new UserAccountRepository();
 
     @Mock
-    private AtmService atmService = new AtmService();
+    private AtmServiceImpl atmService = new AtmServiceImpl();
 
     @DisplayName("Test - AccountServiceTest - getAccountDetails")
     @Test

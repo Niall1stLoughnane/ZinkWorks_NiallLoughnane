@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class AtmServiceTest {
 
     @InjectMocks
-    private AtmService atmService = new AtmService();
+    private AtmServiceImpl atmService = new AtmServiceImpl();
 
     @Mock
     private AtmRepository atmRepository = new AtmRepository();

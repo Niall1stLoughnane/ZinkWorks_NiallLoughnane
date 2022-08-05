@@ -7,3 +7,8 @@ add logging (log4j)
 tidy up apierrors
 fix exceptions
 add docker image file
+update individual exceptions
+fix sonarlint issues
+get test coverage over 95%
+add swagger
+add web pages

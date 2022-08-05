@@ -1,4 +1,4 @@
-package com.zinworks;
+package com.zinworks.errors;
 
 public abstract class ApiSubError {
 

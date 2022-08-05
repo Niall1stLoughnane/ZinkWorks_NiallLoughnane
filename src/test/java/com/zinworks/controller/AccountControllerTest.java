@@ -2,8 +2,7 @@ package com.zinworks.controller;
 
 import com.zinworks.exceptions.ZinWorksExeption;
 import com.zinworks.model.User;
-import com.zinworks.service.AccountService;
-import org.junit.jupiter.api.BeforeEach;
+import com.zinworks.service.AccountServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +23,7 @@ public class AccountControllerTest {
     private AccountController accountController= new AccountController();
 
     @Mock
-    private AccountService accountService;
+    private AccountServiceImpl accountService;
 
     @DisplayName("Test - AccountControllerTest - getAccountDetails")
     @Test
