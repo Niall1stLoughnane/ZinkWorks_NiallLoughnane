@@ -1,8 +1,22 @@
 
+product delivery new ideas
 * add the ability for a new user to ba added to the ATM and the info given back will include for now the pin since there is no email
     functionality currently in the system
 - add the ability for a user to update their pin to a new pin if they provide their current pin as well as the new pin
 - add the ability for a user to add money into their account in the ATM - this will update both their own and the ATM current balance
+- add a system property for getting the amount the user can dispense from the system - because some banks might not 300 or 200 to be
+    dispersed at any one time so this is based on configuration and deployment level. This will also help control the balance of the
+    ATM because the amount the user can dispense will be controlled on user, current ATM balance and also global configuration ATM
+    level
+-
+-
+-
+
+IT new ideas
+- see if annotations can be used to control the flow into the controllers and verify an account exists before it even gets into the
+    controller level and if the user account does exist then add this into the flow from the AOP level into the controller level
+        -   this will help with logging purposes
+- examine if thread local can be used to get the flow of a user account throughout the system for logging and security
 -
 -
 -
