@@ -20,19 +20,15 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class AccountControllerTest {
 
-    @InjectMocks // auto inject helloRepository
+    @InjectMocks
     private AccountController accountController= new AccountController();
 
     @Mock
     private AccountService accountService;
 
-    @BeforeEach
-    void setMockOutput() throws ZinWorksExeption {
-    }
-
-    @DisplayName("Test getAccountDetails")
+    @DisplayName("Test - AccountControllerTest - getAccountDetails")
     @Test
-    void testGet() throws ZinWorksExeption {
+    void testGetAccountDetails() throws ZinWorksExeption {
         User mockUser = Mockito.mock(User.class);
         when(accountService.getAccountDetails(anyString(), anyString())).thenReturn(mockUser);
 

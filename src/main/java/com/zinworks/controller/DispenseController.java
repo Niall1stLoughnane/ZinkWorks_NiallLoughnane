@@ -17,7 +17,7 @@ public class DispenseController {
     private DispenseService dispenseService;
 
     @DeleteMapping("/dispenseAccount")
-    public DispensedAmount getAccount(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin, @RequestParam(name="amountRequested") double amountRequested) throws ZinWorksExeption, ZipException {
+    public DispensedAmount dispenseAccount(@RequestParam(name="accountNumber") String accountNumber, @RequestParam(name="pin") String pin, @RequestParam(name="amountRequested") double amountRequested) throws ZinWorksExeption, ZipException {
         return dispenseService.dispense(accountNumber, pin, amountRequested);
     }
 

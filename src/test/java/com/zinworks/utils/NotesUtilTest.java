@@ -1,12 +1,14 @@
 package com.zinworks.utils;
 
 import com.zinworks.model.Notes;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NotesUtilTest {
 
+    @DisplayName("Test - ")
     @Test
     public void testNotesUtil() {
         Notes notes = NotesUtil.getNotes(235);
