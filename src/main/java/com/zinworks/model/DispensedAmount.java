@@ -11,8 +11,10 @@ public class DispensedAmount {
     private int quantity20;
     private int quantity10;
     private int quantity5;
+    private Double balance;
+    private Double maximumWithdrawlAmount;
 
-    public DispensedAmount(double dispensedAmount) {
+    public DispensedAmount(double dispensedAmount, CustomerAccount customerAccount) {
         Notes notesDispensed = NotesUtil.getNotes(dispensedAmount);
 
         this.dispensedAmount = dispensedAmount;
@@ -20,6 +22,8 @@ public class DispensedAmount {
         this.quantity20 = notesDispensed.getQuantity20();
         this.quantity10 = notesDispensed.getQuantity10();
         this.quantity5 = notesDispensed.getQuantity5();
+        this.balance = customerAccount.getBalance();
+        this.maximumWithdrawlAmount = customerAccount.getBalance() + customerAccount.getOverDraft();
     }
 
 }

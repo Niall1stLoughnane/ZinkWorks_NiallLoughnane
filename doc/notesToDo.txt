@@ -15,6 +15,8 @@ add web pages
 tidy up pom.xml
 create overall constants class and check code
 use String.format
-- exception logging to be updated (20220804)
+- exception logging to be updated (20220806)
+sort out logging - too much being logged
+
 
 

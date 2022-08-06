@@ -1,5 +1,6 @@
 package com.zinworks.service;
 
+import com.zinworks.exceptions.AccountNotValidatedExeption;
 import com.zinworks.exceptions.CustomerInvalidException;
 import com.zinworks.model.CustomerAccount;
 import com.zinworks.repository.CustomerAccountRepository;
@@ -13,11 +14,11 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerAccountRepository customerAccountRepository;
 
     @Override
-    public void isValidCustomer(Integer accountNumber, Integer pin) throws CustomerInvalidException {
+    public void isValidCustomer(Integer accountNumber, Integer pin) throws CustomerInvalidException, AccountNotValidatedExeption {
         CustomerAccount customerAccount = this.customerAccountRepository.getCustomerAccount(accountNumber, pin);
 
         if (customerAccount == null) {
-            throw new CustomerInvalidException("Invalid Customer with Account Number [" + accountNumber + "]", System.currentTimeMillis());
+            throw new AccountNotValidatedExeption("Invalid Customer with Account Number [" + accountNumber + "]", System.currentTimeMillis());
         }
     }
 

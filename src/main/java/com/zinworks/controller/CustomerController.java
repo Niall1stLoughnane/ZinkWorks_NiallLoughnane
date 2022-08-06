@@ -25,7 +25,7 @@ public class CustomerController {
     private DispenseServiceImpl dispenseService;
 
     @GetMapping("/balance")
-    Balance getBalance(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin) throws CustomerInvalidException {
+    Balance getBalance(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin) throws CustomerInvalidException, AccountNotValidatedExeption {
         this.customerService.isValidCustomer(accountNumber, pin);
         return balanceService.getBalanceDetails(accountNumber, pin);
     }

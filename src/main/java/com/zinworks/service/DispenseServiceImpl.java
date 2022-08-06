@@ -36,7 +36,7 @@ public class DispenseServiceImpl implements DispenseService{
         atmService.updateAtm(dispenseAmount);
         customerAccountRepository.withDrawAmount(customerAccount, dispenseAmount);
 
-        return new DispensedAmount(dispenseAmount);
+        return new DispensedAmount(dispenseAmount, customerAccount);
     }
 
     private void validateRequestAmount(double dispenseAmount, Double atmBalance) throws InvalidReequestAmountException {

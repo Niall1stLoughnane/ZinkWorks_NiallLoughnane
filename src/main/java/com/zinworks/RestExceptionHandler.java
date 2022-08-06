@@ -1,6 +1,5 @@
 package com.zinworks;
 
-import com.zinworks.errors.ApiError;
 import com.zinworks.exceptions.*;
 import com.zinworks.utils.LoggingUtils;
 import lombok.extern.slf4j.Slf4j;
