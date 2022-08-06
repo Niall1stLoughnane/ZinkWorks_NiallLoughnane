@@ -98,7 +98,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(AccountNotValidatedException.class)
-    public ResponseEntity<Object> handleAccountNotValidatedExeption(
+    public ResponseEntity<Object> handleAccountNotValidatedException(
             AccountNotValidatedException ex) {
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
