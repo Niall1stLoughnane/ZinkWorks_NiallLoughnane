@@ -1,9 +1,9 @@
 package com.zinkworks;
 
-import com.zinworks.exceptions.AccountNotExistExeption;
-import com.zinworks.exceptions.AccountNotValidatedExeption;
-import com.zinworks.exceptions.AtmZeroCashExeption;
-import com.zinworks.exceptions.DispenseNotAllowedExeption;
+import com.zinkworks.exceptions.AccountNotExistExeption;
+import com.zinkworks.exceptions.AccountNotValidatedExeption;
+import com.zinkworks.exceptions.AtmZeroCashExeption;
+import com.zinkworks.exceptions.DispenseNotAllowedExeption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

@@ -1,8 +1,8 @@
 package com.zinkworks.service;
 
-import com.zinworks.exceptions.ZinWorksExeption;
-import com.zinworks.model.Notes;
-import com.zinworks.repository.AtmRepository;
+import com.zinkworks.exceptions.ZinWorksExeption;
+import com.zinkworks.model.Notes;
+import com.zinkworks.repository.AtmRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
