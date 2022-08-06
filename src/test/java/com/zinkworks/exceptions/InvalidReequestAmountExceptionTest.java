@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DispenseNotAllowedExeptionTest{
+public class InvalidReequestAmountExceptionTest {
 
-    @DisplayName("Test - nnnnfx - testException")
+    @DisplayName("Test - InvalidReequestAmountExceptionTest - testException")
     @Test
     public void testException() {
-        DispenseNotAllowedExeption accountNotExistExeption = new DispenseNotAllowedExeption("message", System.currentTimeMillis());
+        InvalidReequestAmountException accountNotExistExeption = new InvalidReequestAmountException("message", System.currentTimeMillis());
 
         assertEquals("message", accountNotExistExeption.getMessage());
         assertNull(accountNotExistExeption.getCause());

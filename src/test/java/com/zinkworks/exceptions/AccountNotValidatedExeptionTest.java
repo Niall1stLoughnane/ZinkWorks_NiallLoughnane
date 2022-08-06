@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerAccountNotExistExeptionTest {
+public class AccountNotValidatedExeptionTest {
 
     @DisplayName("Test - CustomerAccountNotExistExeptionTest - testException")
     @Test
     public void testException() {
-        AccountNotExistExeption accountNotExistExeption = new AccountNotExistExeption("message", System.currentTimeMillis());
+        AccountNotValidatedException accountNotExistExeption = new AccountNotValidatedException("message", System.currentTimeMillis());
 
         assertEquals("message", accountNotExistExeption.getMessage());
         assertNull(accountNotExistExeption.getCause());

@@ -1,7 +1,7 @@
 package com.zinkworks;
 
 import com.zinkworks.exceptions.AccountNotExistExeption;
-import com.zinkworks.exceptions.AccountNotValidatedExeption;
+import com.zinkworks.exceptions.AccountNotValidatedException;
 import com.zinkworks.exceptions.AtmZeroCashExeption;
 import com.zinkworks.exceptions.DispenseNotAllowedExeption;
 import org.junit.jupiter.api.DisplayName;
@@ -130,7 +130,7 @@ public class RestExceptionHandlerTest {
     @DisplayName("Test - RestExceptionHandlerTest - testHandleAccountNotValidatedExeption")
     @Test
     public void testHandleAccountNotValidatedExeption() {
-        AccountNotValidatedExeption accountNotValidatedExeption = new AccountNotValidatedExeption("message", 1l);
+        AccountNotValidatedException accountNotValidatedExeption = new AccountNotValidatedException("message", 1l);
 
         ResponseEntity<Object> result = restExceptionHandler.handleAccountNotValidatedExeption(accountNotValidatedExeption);
 

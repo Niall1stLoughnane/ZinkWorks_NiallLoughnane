@@ -24,14 +24,14 @@ public class CustomerController {
     private DispenseServiceImpl dispenseService;
 
     @GetMapping("/balance")
-    Balance getBalance(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin) throws CustomerInvalidException, AccountNotValidatedExeption {
+    Balance getBalance(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin) throws CustomerInvalidException, AccountNotValidatedException {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Getting Balance");
         this.customerService.isValidCustomer(accountNumber, pin);
         return balanceService.getBalanceDetails(accountNumber, pin);
     }
 
     @DeleteMapping("/dispenseAccount")
-    DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin, @RequestParam(name = "amountRequested") double amountRequested) throws ZinWorksExeption {
+    DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin, @RequestParam(name = "amountRequested") double amountRequested) throws ZinWorksException {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Dispensing from customer");
         this.customerService.isValidCustomer(accountNumber, pin);
         return dispenseService.dispense(accountNumber, pin, amountRequested);

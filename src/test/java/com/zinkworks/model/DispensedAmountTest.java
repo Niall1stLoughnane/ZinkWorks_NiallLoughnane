@@ -2,16 +2,19 @@ package com.zinkworks.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DispensedAmountTest {
 
+    private CustomerAccount customerAccount = Mockito.mock(CustomerAccount.class)l;
+
     @DisplayName("Test - DispensedAmountTest - testConstructor")
     @Test
     public void testConstructor() {
-        DispensedAmount dispensedAmount = new DispensedAmount(935d);
+        DispensedAmount dispensedAmount = new DispensedAmount(935d, new CustomerAccount(P"accountNumber", 123, 23223, ));
 
         assertEquals(935d, dispensedAmount.getDispensedAmount());
         assertEquals(18, dispensedAmount.getQuantity50());
