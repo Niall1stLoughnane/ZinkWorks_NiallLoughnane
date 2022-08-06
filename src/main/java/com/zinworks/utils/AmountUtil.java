@@ -1,18 +1,23 @@
 package com.zinworks.utils;
 
-import com.zinworks.model.Account;
+import com.zinworks.exceptions.InvalidReequestAmountException;
+import com.zinworks.model.CustomerAccount;
 
 public final class AmountUtil {
 
     private AmountUtil(){}
 
-    public static double getDispenseAmount(Account account, double amountRequested) {
-        Double accountBalance = account.getBalance();
+    public static double getDispenseAmount(CustomerAccount customerAccount, double amountRequested) throws InvalidReequestAmountException {
 
-        if (accountBalance < amountRequested) {
-            return accountBalance;
+
+        if(customerAccount.getBalance() > amountRequested) {
+            return amountRequested;
         }
 
-        return amountRequested;
+        if((customerAccount.getBalance() + customerAccount.getOverDraft()) > amountRequested) {
+            return amountRequested;
+        }
+
+        throw new InvalidReequestAmountException("Invalid Request Amount: " + amountRequested, System.currentTimeMillis());
     }
 }

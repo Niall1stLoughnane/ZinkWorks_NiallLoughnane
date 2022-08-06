@@ -1,10 +1,7 @@
 package com.zinworks;
 
 import com.zinworks.errors.ApiError;
-import com.zinworks.exceptions.AccountNotExistExeption;
-import com.zinworks.exceptions.AccountNotValidatedExeption;
-import com.zinworks.exceptions.AtmZeroCashExeption;
-import com.zinworks.exceptions.DispenseNotAllowedExeption;
+import com.zinworks.exceptions.*;
 import com.zinworks.utils.LoggingUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -124,6 +121,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleAccountNotExistExeption (
             AccountNotExistExeption ex) {
         LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AccountNotExistExeption is being handeld");
+        ApiError apiError = new ApiError(BAD_REQUEST);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(CustomerInvalidException.class)
+    protected ResponseEntity<Object> handleCustomerInvalidException (
+            CustomerInvalidException ex) {
+        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "CustomerInvalidException is being handeld");
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);

@@ -15,34 +15,6 @@ public class AtmServiceImpl implements AtmService {
     private AtmRepository atmRepository;
 
     @Override
-    public double getTotalAllowedDispenseAmount(double amount) throws AtmZeroCashExeption {
-
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(amount), "Getting total allowed dispensed amount = initial ["+ amount + "]");
-
-        double balance = atmRepository.getBalance();
-
-        if (balance <0 ) {
-            LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Double.toString(balance), "Exception thrown as balance in ATM is 0");
-            throw new AtmZeroCashExeption("Not enough money in ATM", System.currentTimeMillis());
-        }
-
-        double totalAllowedDispenseAmount = getTotalAllowedDispenseAmount(amount, balance);
-
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(totalAllowedDispenseAmount), "Total Allowed smount is " + totalAllowedDispenseAmount);
-
-        return totalAllowedDispenseAmount;
-    }
-
-    private double getTotalAllowedDispenseAmount(double amount, double balance) {
-
-        if (balance < amount) {
-            return balance;
-        }
-
-        return amount;
-    }
-
-    @Override
     public void updateAtm(double amount) {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(amount), "Updating ATM with details["+ amount + "]");
         double balance = atmRepository.getBalance() - amount;
@@ -51,4 +23,8 @@ public class AtmServiceImpl implements AtmService {
         atmRepository.updateBalanceAndNotes(balance, notesDispensed);
     }
 
+    @Override
+    public Double getBalance() {
+        return atmRepository.getBalance();
+    }
 }
