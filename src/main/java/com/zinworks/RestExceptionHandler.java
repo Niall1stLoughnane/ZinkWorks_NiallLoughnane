@@ -89,14 +89,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-    @ExceptionHandler(AtmZeroCashExeption.class)
-    protected ResponseEntity<Object> handleAtmZeroCashExeption (
-            AtmZeroCashExeption ex) {
-        ApiError apiError = new ApiError(BAD_REQUEST);
-        apiError.setMessage(ex.getMessage());
-        return buildResponseEntity(apiError);
-    }
-
     @ExceptionHandler(DispenseNotAllowedExeption.class)
     protected ResponseEntity<Object> handleDispenseNotAllowedExeption (
             DispenseNotAllowedExeption ex) {
@@ -108,14 +100,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccountNotValidatedExeption.class)
     protected ResponseEntity<Object> handleAccountNotValidatedExeption (
             AccountNotValidatedExeption ex) {
-        ApiError apiError = new ApiError(BAD_REQUEST);
-        apiError.setMessage(ex.getMessage());
-        return buildResponseEntity(apiError);
-    }
-
-    @ExceptionHandler(AccountNotExistExeption.class)
-    protected ResponseEntity<Object> handleAccountNotExistExeption (
-            AccountNotExistExeption ex) {
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);

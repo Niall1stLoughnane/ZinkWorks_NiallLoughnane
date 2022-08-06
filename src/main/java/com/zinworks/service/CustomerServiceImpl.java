@@ -15,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerAccountRepository customerAccountRepository;
 
     @Override
-    public void isValidCustomer(Integer accountNumber, Integer pin) throws CustomerInvalidException, AccountNotValidatedExeption {
+    public void isValidCustomer(Integer accountNumber, Integer pin) throws AccountNotValidatedExeption {
         CustomerAccount customerAccount = this.customerAccountRepository.getCustomerAccount(accountNumber, pin);
 
         if (customerAccount == null) {

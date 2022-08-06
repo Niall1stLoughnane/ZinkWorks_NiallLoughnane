@@ -1,9 +1,7 @@
 package com.zinworks.service;
 
-import com.zinworks.exceptions.AtmZeroCashExeption;
 import com.zinworks.model.Notes;
 import com.zinworks.repository.AtmRepository;
-import com.zinworks.utils.LoggingUtils;
 import com.zinworks.utils.NotesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
