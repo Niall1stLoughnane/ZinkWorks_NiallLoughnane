@@ -92,7 +92,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AtmZeroCashExeption.class)
     protected ResponseEntity<Object> handleAtmZeroCashExeption (
             AtmZeroCashExeption ex) {
-        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AtmZeroCashExeption is being handeld");
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -101,7 +100,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DispenseNotAllowedExeption.class)
     protected ResponseEntity<Object> handleDispenseNotAllowedExeption (
             DispenseNotAllowedExeption ex) {
-        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "DispenseNotAllowedExeption is being handeld");
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -110,7 +108,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccountNotValidatedExeption.class)
     protected ResponseEntity<Object> handleAccountNotValidatedExeption (
             AccountNotValidatedExeption ex) {
-        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AccountNotValidatedExeption is being handeld");
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -119,7 +116,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(AccountNotExistExeption.class)
     protected ResponseEntity<Object> handleAccountNotExistExeption (
             AccountNotExistExeption ex) {
-        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "AccountNotExistExeption is being handeld");
+        ApiError apiError = new ApiError(BAD_REQUEST);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(InvalidReequestAmountException.class)
+    protected ResponseEntity<Object> handleInvalidReequestAmountException (
+            InvalidReequestAmountException ex) {
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -128,7 +132,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CustomerInvalidException.class)
     protected ResponseEntity<Object> handleCustomerInvalidException (
             CustomerInvalidException ex) {
-        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), Long.toString(ex.getSystemTime()), "CustomerInvalidException is being handeld");
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
@@ -175,9 +178,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     protected ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
                                                                       WebRequest request) {
+
+        LoggingUtils.logMessage("ERROR", this.getClass().getSimpleName(), "Invalid Request", ex.getMessage());
         ApiError apiError = new ApiError(BAD_REQUEST);
-        apiError.setMessage(String.format("The parameter '%s' of value '%s' could not be converted to type", ex.getName(), ex.getValue()));
-        apiError.setDebugMessage(ex.getMessage());
+        apiError.setMessage(String.format("Invalid Request - Please Try Again", ex.getName(), ex.getValue()));
+        apiError.setDebugMessage("Invalid Request - Please Try Again");
         return buildResponseEntity(apiError);
     }
 

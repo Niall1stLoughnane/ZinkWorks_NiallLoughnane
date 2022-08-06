@@ -16,10 +16,8 @@ public class AtmServiceImpl implements AtmService {
 
     @Override
     public void updateAtm(double amount) {
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(amount), "Updating ATM with details["+ amount + "]");
         double balance = atmRepository.getBalance() - amount;
         Notes notesDispensed = NotesUtil.getNotes(amount);
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(balance), "Balance in ATM ["+ balance + "]");
         atmRepository.updateBalanceAndNotes(balance, notesDispensed);
     }
 

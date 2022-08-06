@@ -6,6 +6,7 @@ import com.zinworks.model.DispensedAmount;
 import com.zinworks.service.BalanceService;
 import com.zinworks.service.CustomerService;
 import com.zinworks.service.DispenseServiceImpl;
+import com.zinworks.utils.LoggingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +27,14 @@ public class CustomerController {
 
     @GetMapping("/balance")
     Balance getBalance(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin) throws CustomerInvalidException, AccountNotValidatedExeption {
+        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Getting Balance");
         this.customerService.isValidCustomer(accountNumber, pin);
         return balanceService.getBalanceDetails(accountNumber, pin);
     }
 
     @DeleteMapping("/dispenseAccount")
     DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin, @RequestParam(name = "amountRequested") double amountRequested) throws ZinWorksExeption {
+        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Dispensing from customer");
         this.customerService.isValidCustomer(accountNumber, pin);
         return dispenseService.dispense(accountNumber, pin, amountRequested);
     }

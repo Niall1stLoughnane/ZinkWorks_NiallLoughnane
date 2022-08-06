@@ -18,6 +18,7 @@ public final class AmountUtil {
             return amountRequested;
         }
 
+        LoggingUtils.logMessage("ERROR", "AmountUtil", customerAccount.getAccountNumber(), "Invalid Request Amount: " + amountRequested);
         throw new InvalidReequestAmountException("Invalid Request Amount: " + amountRequested, System.currentTimeMillis());
     }
 }

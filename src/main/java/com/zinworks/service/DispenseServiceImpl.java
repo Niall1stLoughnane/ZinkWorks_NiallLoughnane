@@ -21,7 +21,6 @@ public class DispenseServiceImpl implements DispenseService{
     @Override
     public DispensedAmount dispense(Integer accountNumber, Integer pin, double amountRequested) throws InvalidReequestAmountException {
 
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), "" + accountNumber, "Dispensing from customerAccount");
         CustomerAccount customerAccount = customerAccountRepository.getCustomerAccount(accountNumber, pin);
 
         double dispenseAmount = AmountUtil.getDispenseAmount(customerAccount, amountRequested);
