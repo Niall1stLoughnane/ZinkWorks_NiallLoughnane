@@ -2,6 +2,7 @@ package com.zinkworks;
 
 import com.zinkworks.exceptions.AccountNotValidatedException;
 import com.zinkworks.exceptions.DispenseNotAllowedExeption;
+import com.zinkworks.exceptions.InvalidReequestAmountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -44,7 +45,7 @@ public class RestExceptionHandlerTest {
         HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
         int expectedStatusCodeValue = 400;
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
-        String bodyEnd = "type parameterType is not present, subErrors=null)";
+        String bodyEnd = "message=parameterName parameter is missing";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
         verifyNoInteractions(mockMethodParameter, mockBindingResult,mockWebRequest);
     }
@@ -79,6 +80,19 @@ public class RestExceptionHandlerTest {
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
         verify(mockBindingResult).getFieldErrors();
         verify(mockBindingResult).getGlobalErrors();
+    }
+
+    @Test
+    public void testHandleInvalidReequestAmountException(){
+        InvalidReequestAmountException invalidReequestAmountException = new InvalidReequestAmountException("message", 1l);
+
+        ResponseEntity<Object> result = restExceptionHandler.handleInvalidReequestAmountException(invalidReequestAmountException);
+
+        HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
+        int expectedStatusCodeValue = 400;
+        String bodyStart = "ApiError(status=400 BAD_REQUEST";
+        String bodyEnd = "message=message";
+        assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
     }
 
     @DisplayName("Test - RestExceptionHandlerTest - testHandleDispenseNotAllowedExeption")
@@ -183,7 +197,7 @@ public class RestExceptionHandlerTest {
         HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
         int expectedStatusCodeValue = 400;
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
-        String bodyEnd = "could not be converted to type";
+        String bodyEnd = "message=Invalid Request - Please Try Again";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
     }
 
