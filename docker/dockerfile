@@ -1,4 +1,4 @@
 FROM openjdk:9
-ADD target/ZinWorksTest-0.0.1-SNAPSHOT.jar ZinWorksTest-0.0.1-SNAPSHOT.jar
+ADD target/ZinkWorks_NiallLoughnane.jar ZinkWorks_NiallLoughnane.jar
 EXPOSE 8089
-ENTRYPOINT ["java", "-jar", "ZinWorksTest-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "ZinkWorks_NiallLoughnane.jar"]
