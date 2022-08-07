@@ -1,6 +1,7 @@
 package com.zinkworks;
 
 import com.zinkworks.exceptions.AccountNotValidatedException;
+import com.zinkworks.exceptions.CustomerInvalidException;
 import com.zinkworks.exceptions.DispenseNotAllowedExeption;
 import com.zinkworks.exceptions.InvalidReequestAmountException;
 import org.junit.jupiter.api.DisplayName;
@@ -198,6 +199,19 @@ public class RestExceptionHandlerTest {
         int expectedStatusCodeValue = 400;
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "message=Invalid Request - Please Try Again";
+        assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
+    }
+
+    @Test
+    public void testHandleCustomerInvalidException() {
+        CustomerInvalidException mockCustomerInvalidException = Mockito.mock(CustomerInvalidException.class);
+
+        ResponseEntity<Object> result = restExceptionHandler.handleCustomerInvalidException(mockCustomerInvalidException);
+
+        HttpStatus expectedHttpStatus = HttpStatus.BAD_REQUEST;
+        int expectedStatusCodeValue = 400;
+        String bodyStart = "ApiError(status=400 BAD_REQUEST";
+        String bodyEnd = "message=null";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
     }
 

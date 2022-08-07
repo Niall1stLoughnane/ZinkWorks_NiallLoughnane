@@ -5,13 +5,17 @@ import com.zinkworks.model.CustomerAccount;
 import com.zinkworks.repository.CustomerAccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 
+@ExtendWith(MockitoExtension.class)
 public class BalanceServiceImplTest {
 
     @InjectMocks
@@ -21,16 +25,8 @@ public class BalanceServiceImplTest {
     private CustomerAccountRepository mockCustomerAccountRepository;
 
     @Mock
-    private AtmServiceImpl mockAtmServiceImpl;
+    private AtmServiceImpl mockAtmService;
 
-    @BeforeEach
-    public void doSetup() {
-        balanceService = new BalanceServiceImpl();
-        mockCustomerAccountRepository = Mockito.mock(CustomerAccountRepository.class);
-        mockAtmServiceImpl = Mockito.mock(AtmServiceImpl.class);
-    }
-
-/*
     @Test
     public void testGetBalanceDetails(){
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);
@@ -40,13 +36,12 @@ public class BalanceServiceImplTest {
 
         Balance result = balanceService.getBalanceDetails(1, 2);
 
-        assertEquals(3, result.getBalance());
-        assertEquals(3, result.getAccountNumber());
-        assertEquals(3, result.getMaximumWithdrawlAmount());
-        Mockito.verify(mockCustomerAccount).getBalance();
+        assertEquals(2, result.getBalance());
+        assertEquals(1, result.getAccountNumber());
+        assertEquals(4, result.getMaximumWithdrawlAmount());
+        Mockito.verify(mockCustomerAccount, Mockito.times(2)).getBalance();
         Mockito.verify(mockCustomerAccount).getOverDraft();
         Mockito.verify(mockCustomerAccountRepository).getCustomerAccount(eq(1), eq(2));
         Mockito.verifyNoMoreInteractions(mockCustomerAccount, mockCustomerAccountRepository);
     }
-*/
 }
