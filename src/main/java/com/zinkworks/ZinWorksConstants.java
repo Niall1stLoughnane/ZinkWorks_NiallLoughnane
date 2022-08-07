@@ -11,5 +11,8 @@ public interface ZinWorksConstants {
 
     String LOG_LEVEL_INFO = "INFO";
     String LOG_LEVEL_ERROR = "ERROR";
+    String LOG_LEVEL_DEBUG = "DEBUG";
+    String ERROR = "ERROR";
+    String DEBUG = "DEBUG";
 
 }

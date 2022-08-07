@@ -3,7 +3,7 @@ package com.zinkworks.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.zinkworks.ZinWorksConstants.LOG_LEVEL_INFO;
+import static com.zinkworks.ZinWorksConstants.*;
 
 public final class LoggingUtils {
 
@@ -17,12 +17,12 @@ public final class LoggingUtils {
                 logger.info("" + LOG_LEVEL_INFO + "|||" + cllass + "|||" + detail + "|||" + message);
                 return;
             case "ERROR" :
-                logger.error(""+ ERROR + "|||" + cllass + "|||" + detail + "|||" + message);
+                logger.error(""+ LOG_LEVEL_ERROR + "|||" + cllass + "|||" + detail + "|||" + message);
                 return;
             case "DEBUG" :
-                logger.error("" + DEBUG + "|||" + cllass + "|||" + detail + "|||" + message);
+                logger.error("" + LOG_LEVEL_DEBUG + "|||" + cllass + "|||" + detail + "|||" + message);
                 return;
-            default
+            default:
                 logger.info(LOG_LEVEL_INFO + "|||" + cllass + "|||" + detail + "|||" + message);
         }
     }
