@@ -7,7 +7,7 @@ import com.zinkworks.utils.LoggingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.zinkworks.ZinWorksConstants.BALANCE_SUCCESSFULLY_RETRIEVED_S;
+import static com.zinkworks.ZinWorksConstants.BALANCE_SUCCESSFULLY_RETRIEVED;
 import static com.zinkworks.ZinWorksConstants.LOG_LEVEL_INFO;
 
 @Service
@@ -26,7 +26,7 @@ public class BalanceServiceImpl implements BalanceService {
 
         double maximumWithdrawlAmount = customerAccount.getBalance() + customerAccount.getOverDraft();
 
-        LoggingUtils.logMessage(LOG_LEVEL_INFO, this.getClass().getSimpleName(), Integer.toString(accountNumber), String.format(BALANCE_SUCCESSFULLY_RETRIEVED_S, accountNumber));
+        LoggingUtils.logMessage(LOG_LEVEL_INFO, this.getClass().getSimpleName(), Integer.toString(accountNumber), String.format(BALANCE_SUCCESSFULLY_RETRIEVED, accountNumber));
 
         return new Balance(accountNumber, customerAccount.getBalance(), maximumWithdrawlAmount);
     }

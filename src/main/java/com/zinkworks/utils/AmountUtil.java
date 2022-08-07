@@ -3,7 +3,7 @@ package com.zinkworks.utils;
 import com.zinkworks.exceptions.InvalidReequestAmountException;
 import com.zinkworks.model.CustomerAccount;
 
-import static com.zinkworks.ZinWorksConstants.EXCEPTION_INVALID_REQUEST_AMOUNT_S;
+import static com.zinkworks.ZinWorksConstants.EXCEPTION_INVALID_REQUEST_AMOUNT;
 import static com.zinkworks.ZinWorksConstants.LOG_LEVEL_ERROR;
 
 public final class AmountUtil {
@@ -21,7 +21,7 @@ public final class AmountUtil {
             return amountRequested;
         }
 
-        LoggingUtils.logMessage(LOG_LEVEL_ERROR, "AmountUtil", customerAccount.getAccountNumber(), String.format(EXCEPTION_INVALID_REQUEST_AMOUNT_S, amountRequested));
-        throw new InvalidReequestAmountException(String.format(EXCEPTION_INVALID_REQUEST_AMOUNT_S, amountRequested), System.currentTimeMillis());
+        LoggingUtils.logMessage(LOG_LEVEL_ERROR, "AmountUtil", customerAccount.getAccountNumber(), String.format(EXCEPTION_INVALID_REQUEST_AMOUNT, amountRequested));
+        throw new InvalidReequestAmountException(String.format(EXCEPTION_INVALID_REQUEST_AMOUNT, amountRequested), System.currentTimeMillis());
     }
 }

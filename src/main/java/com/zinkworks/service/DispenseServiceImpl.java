@@ -9,6 +9,9 @@ import com.zinkworks.utils.LoggingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.zinkworks.ZinWorksConstants.DISPENSING_FROM_CUSTOMER_ACCOUNT_ACCOUNT_NUMBER_S_DISPENSE_AMOUNT;
+import static com.zinkworks.ZinWorksConstants.EXCEPTION_INVALID_REQUEST_AMOUNTT;
+
 @Service
 public class DispenseServiceImpl implements DispenseService{
 
@@ -30,7 +33,7 @@ public class DispenseServiceImpl implements DispenseService{
         validateRequestAmount(dispenseAmount, atmBalance);
 
 
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(dispenseAmount), "Dispensing from customerAccount - [account_number: " + accountNumber + "] [dispense_amount: " + dispenseAmount + "]");
+        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Double.toString(dispenseAmount), String.format(DISPENSING_FROM_CUSTOMER_ACCOUNT_ACCOUNT_NUMBER_S_DISPENSE_AMOUNT, accountNumber, dispenseAmount));
 
         atmService.updateAtm(dispenseAmount);
         customerAccountRepository.withDrawAmount(customerAccount, dispenseAmount);
@@ -40,7 +43,7 @@ public class DispenseServiceImpl implements DispenseService{
 
     private void validateRequestAmount(double dispenseAmount, Double atmBalance) throws InvalidReequestAmountException {
         if (dispenseAmount > atmBalance) {
-            throw new InvalidReequestAmountException("Invalid Request amount", System.currentTimeMillis());
+            throw new InvalidReequestAmountException(EXCEPTION_INVALID_REQUEST_AMOUNTT, System.currentTimeMillis());
         }
     }
 
