@@ -32,7 +32,7 @@ public class CustomerController {
 
     @DeleteMapping("/dispenseAccount")
     DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin, @RequestParam(name = "amountRequested") double amountRequested) throws ZinWorksException {
-        LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Dispensing from customer");
+           LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Dispensing from customer");
         this.customerService.isValidCustomer(accountNumber, pin);
         return dispenseService.dispense(accountNumber, pin, amountRequested);
     }
