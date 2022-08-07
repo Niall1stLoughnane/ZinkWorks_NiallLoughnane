@@ -37,8 +37,7 @@ public class AmountUtilTest {
             assertEquals("Invalid Request Amount: 90.0", e.getMessage());
         }
 
-        verify(mockCustomerAccount).getBalance();
-        verifyNoMoreInteractions(mockCustomerAccount);
+        verify(mockCustomerAccount, times(2)).getBalance();
     }
 
     @DisplayName("Test - AmountUtilTest - testAmountUtilWhenAccountBalanceIsLessThanAmountRequested")
