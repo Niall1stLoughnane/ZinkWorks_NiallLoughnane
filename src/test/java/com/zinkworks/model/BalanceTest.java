@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class BalanceTest {
+public class BalanceTest    {
 
 
     @DisplayName("Test - DispensedAmountTest - testConstructor")
@@ -14,8 +14,8 @@ public class BalanceTest {
     public void testConstructor() {
         Balance balance = new Balance(1, 2d, 3d);
 
-        assertEquals(1, balance.getBalance());
-        assertEquals(2, balance.getAccountNumber());
+        assertEquals(2, balance.getBalance());
+        assertEquals(1, balance.getAccountNumber());
         assertEquals(3, balance.getMaximumWithdrawlAmount());
     }
 

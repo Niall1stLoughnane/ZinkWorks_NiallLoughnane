@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.*;
 
 public class AmountUtilTest {
 
@@ -22,7 +21,7 @@ public class AmountUtilTest {
 
         double result = AmountUtil.getDispenseAmount(mockCustomerAccount, 90);
 
-        assertEquals(10, result);
+        assertEquals(90, result);
         verify(mockCustomerAccount).getBalance();
         verifyNoMoreInteractions(mockCustomerAccount);
     }
@@ -32,9 +31,12 @@ public class AmountUtilTest {
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);
         Mockito.when(mockCustomerAccount.getBalance()).thenReturn(10d);
 
-        double result = AmountUtil.getDispenseAmount(mockCustomerAccount, 90);
+        try{
+            AmountUtil.getDispenseAmount(mockCustomerAccount, 90);
+        } catch (InvalidReequestAmountException e){
+            assertEquals("Invalid Request Amount: 90.0", e.getMessage());
+        }
 
-        assertEquals(10, result);
         verify(mockCustomerAccount).getBalance();
         verifyNoMoreInteractions(mockCustomerAccount);
     }
@@ -49,7 +51,7 @@ public class AmountUtilTest {
         double result = AmountUtil.getDispenseAmount(mockCustomerAccount, 90);
 
         assertEquals(90, result);
-        verify(mockCustomerAccount).getBalance();
+        verify(mockCustomerAccount, times(2)).getBalance();
         verify(mockCustomerAccount).getOverDraft();
         verifyNoMoreInteractions(mockCustomerAccount);
     }
