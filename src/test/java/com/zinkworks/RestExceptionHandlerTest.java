@@ -123,7 +123,7 @@ public class RestExceptionHandlerTest {
         String bodyStart = "ApiError(status=400 BAD_REQUEST";
         String bodyEnd = "message=message, debugMessage=null, subErrors=null)";
         assertResult(result, expectedHttpStatus, expectedStatusCodeValue, bodyStart, bodyEnd);
-        verifyNoInteractions(mockMethodParameter, mockBindingResult,mockWebRequest);
+        verifyNoInteractions(mockMethodParameter);
     }
 
     @DisplayName("Test - RestExceptionHandlerTest - testHttpMessageNotReadableException")
