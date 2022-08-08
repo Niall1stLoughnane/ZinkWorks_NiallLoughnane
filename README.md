@@ -60,5 +60,7 @@ If i could say:
 * I really enjoyed developing this ATM system
 * if you need any queries or update or questions please feel free to contact me on 0872079574,
 
+I Look forward to all and any feedback,
+
 Thanks,
 Niall
