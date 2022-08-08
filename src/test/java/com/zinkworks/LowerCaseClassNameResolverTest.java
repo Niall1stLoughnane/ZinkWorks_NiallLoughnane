@@ -2,6 +2,7 @@ package com.zinkworks;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ public class LowerCaseClassNameResolverTest {
         lowerCaseClassNameResolver = new LowerCaseClassNameResolver();
     }
 
+    @DisplayName("Test - LowerCaseClassNameResolverTest - testIdFromValue")
     @Test
     public void testIdFromValue() {
         LinkedList linkedList = new LinkedList();
@@ -26,6 +28,7 @@ public class LowerCaseClassNameResolverTest {
         assertEquals("linkedlist", result);
     }
 
+    @DisplayName("Test - LowerCaseClassNameResolverTest - testIdFromValueAndType")
     @Test
     public void testIdFromValueAndType() {
         LinkedList linkedList = new LinkedList();
@@ -35,8 +38,9 @@ public class LowerCaseClassNameResolverTest {
         assertEquals("linkedlist", result);
     }
 
+    @DisplayName("Test - LowerCaseClassNameResolverTest - testIdFromValueAndType")
     @Test
-    public void test() {
+    public void testGetMechanism() {
         JsonTypeInfo.Id result = lowerCaseClassNameResolver.getMechanism();
 
         assertEquals(JsonTypeInfo.Id.CUSTOM, result);

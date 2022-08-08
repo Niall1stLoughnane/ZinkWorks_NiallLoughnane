@@ -4,6 +4,7 @@ import com.zinkworks.model.Balance;
 import com.zinkworks.model.CustomerAccount;
 import com.zinkworks.repository.CustomerAccountRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,6 +28,7 @@ public class BalanceServiceImplTest {
     @Mock
     private AtmServiceImpl mockAtmService;
 
+    @DisplayName("Test - BalanceServiceImplTest - testGetBalanceDetails")
     @Test
     public void testGetBalanceDetails(){
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);

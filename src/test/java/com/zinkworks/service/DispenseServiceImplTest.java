@@ -3,6 +3,7 @@ package com.zinkworks.service;
 import com.zinkworks.exceptions.InvalidReequestAmountException;
 import com.zinkworks.model.CustomerAccount;
 import com.zinkworks.repository.CustomerAccountRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,7 @@ public class DispenseServiceImplTest {
     @Mock
     private AtmServiceImpl mockAtmService;
 
+    @DisplayName("Test - DispenseServiceImplTest - testDispenseWhenDispenseAmountIsGreaterThanAtmBalance")
     @Test
     public void testDispense() throws InvalidReequestAmountException {
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);
@@ -43,6 +45,7 @@ public class DispenseServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockCustomerAccountRepository, mockAtmService, mockCustomerAccount);
     }
 
+    @DisplayName("Test - DispenseServiceImplTest - testDispenseWhenDispenseAmountIsGreaterThanAtmBalance")
     @Test
     public void testDispenseWhenDispenseAmountIsGreaterThanAtmBalance() throws InvalidReequestAmountException {
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);

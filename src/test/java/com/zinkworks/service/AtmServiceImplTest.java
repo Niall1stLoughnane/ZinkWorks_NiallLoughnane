@@ -2,6 +2,7 @@ package com.zinkworks.service;
 
 import com.zinkworks.model.Notes;
 import com.zinkworks.repository.AtmRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
@@ -22,6 +23,7 @@ public class AtmServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @DisplayName("Test - AtmServiceImplTest - testUpdateAtm")
     @Test
     public void testUpdateAtm(){
         Mockito.when(mockAtmRepository.getBalance()).thenReturn(50d);
@@ -32,6 +34,7 @@ public class AtmServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockAtmRepository);
     }
 
+    @DisplayName("Test - AtmServiceImplTest - testGetBalance")
     @Test
     public void testGetBalance(){
         Mockito.when(mockAtmRepository.getBalance()).thenReturn(100d);

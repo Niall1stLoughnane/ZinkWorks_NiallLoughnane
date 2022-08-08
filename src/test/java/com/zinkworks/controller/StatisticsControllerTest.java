@@ -2,6 +2,7 @@ package com.zinkworks.controller;
 
 import com.zinkworks.model.Statistics;
 import com.zinkworks.service.StatisticsService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,6 +22,7 @@ public class StatisticsControllerTest {
     @Mock
     private StatisticsService mockStatisticsService;
 
+    @DisplayName("Test - StatisticsControllerTest - testGetStatistics")
     @Test
     public void testGetStatistics() {
         Statistics mockStatistics = mock(Statistics.class);

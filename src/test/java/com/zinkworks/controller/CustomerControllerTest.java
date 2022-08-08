@@ -12,6 +12,7 @@ import com.zinkworks.service.BalanceService;
 import com.zinkworks.service.CustomerService;
 import com.zinkworks.service.DispenseServiceImpl;
 import com.zinkworks.service.StatisticsService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -46,6 +47,7 @@ public class CustomerControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @DisplayName("Test - CustomerControllerTest - testGetBalance")
     @Test
     public  void testGetBalance() throws CustomerInvalidException, AccountNotValidatedException {
         Balance balance = new Balance(1, 2d, 3d);
@@ -60,6 +62,7 @@ public class CustomerControllerTest {
         Mockito.verifyNoMoreInteractions(mockCustomerService, mockBalanceService, mockDispenseService, mockStatisticsService);
     }
 
+    @DisplayName("Test - CustomerControllerTest - testDispenseAccount")
     @Test
     public void testDispenseAccount() throws ZinWorksException {
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);
@@ -77,6 +80,7 @@ public class CustomerControllerTest {
         Mockito.verify(mockStatisticsService).addWithdrawalSuccessful(Mockito.eq(3d));
         Mockito.verifyNoMoreInteractions(mockCustomerAccount, mockCustomerService, mockDispenseService, mockBalanceService, mockStatisticsService);
     }
+    @DisplayName("Test - CustomerControllerTest - testDispenseAccountWhenZinWorksExceptionIsThrown")
     @Test
     public void testDispenseAccountWhenZinWorksExceptionIsThrown() throws ZinWorksException {
         CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);

@@ -1,9 +1,11 @@
 package com.zinkworks.utils;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LoggingUtilsTest {
 
+    @DisplayName("Test - LoggingUtilsTest - testLoggingUtils")
     @Test
     public void testLoggingUtils() {
         LoggingUtils.logMessage("INFO", "class", "detail","message");

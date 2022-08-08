@@ -1,5 +1,6 @@
 package com.zinkworks.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,25 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class AtmAccountTest {
 
-    @Test
-    public void testInitialize(){
-        AtmAccount atmAccount = new AtmAccount();
 
-        assertEquals(0, atmAccount.getId());
-        assertEquals(0, atmAccount.getBalance());
-        assertNull(atmAccount.getNotes());
 
-        atmAccount.initialize();
-
-        assertEquals(1, atmAccount.getId());
-        assertEquals(1500, atmAccount.getBalance());
-        assertEquals(10, atmAccount.getNotes().getQuantity50());
-        assertEquals(30, atmAccount.getNotes().getQuantity20());
-        assertEquals(30, atmAccount.getNotes().getQuantity10());
-        assertEquals(20, atmAccount.getNotes().getQuantity5());
-        assertEquals(0, atmAccount.getNotes().getValue());
-    }
-
+    @DisplayName("Test - AtmAccountTest - testUpdateBalanceAndNotes")
     @Test
     public void testUpdateBalanceAndNotes() {
         AtmAccount atmAccount = new AtmAccount();

@@ -1,6 +1,7 @@
 package com.zinkworks.service;
 
 import com.zinkworks.repository.StatisticsRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,6 +20,7 @@ public class StatisticsServiceImplTest {
     @Mock
     private StatisticsRepository mockStatisticsRepository;
 
+    @DisplayName("Test - StatisticsServiceImplTest - testAddBalanceLoginFailure")
     @Test
     public void testAddBalanceLoginFailure() {
         this.statisticsService.addBalanceLoginFailure(1);
@@ -27,6 +29,7 @@ public class StatisticsServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockStatisticsRepository);
     }
 
+    @DisplayName("Test - StatisticsServiceImplTest - testAddWithdrawalLoginFailure")
     @Test
     public void testAddWithdrawalLoginFailure() {
         this.statisticsService.addWithdrawalLoginFailure(2);
@@ -35,6 +38,7 @@ public class StatisticsServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockStatisticsRepository);
     }
 
+    @DisplayName("Test - StatisticsServiceImplTest - testAddBalanceRequest")
     @Test
     public void testAddBalanceRequest(){
         this.statisticsService.addBalanceRequest();
@@ -43,14 +47,16 @@ public class StatisticsServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockStatisticsRepository);
     }
 
+    @DisplayName("Test - StatisticsServiceImplTest - testAddWithdrawal")
     @Test
-    public void test (){
+    public void testAddWithdrawal(){
         this.statisticsService.addWithdrawal(3d);
 
         Mockito.verify(mockStatisticsRepository).addWithdrawal(eq(3d));
         Mockito.verifyNoMoreInteractions(mockStatisticsRepository);
     }
 
+    @DisplayName("Test - StatisticsServiceImplTest - testAddWithdrawalSuccessful")
     @Test
     public void testAddWithdrawalSuccessful(){
         this.statisticsService.addWithdrawalSuccessful(4d);
@@ -59,6 +65,7 @@ public class StatisticsServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockStatisticsRepository);
     }
 
+    @DisplayName("Test - StatisticsServiceImplTest - testAddWithdrawalFailure")
     @Test
     public void testAddWithdrawalFailure(){
         this.statisticsService.addWithdrawalFailure(5d);
@@ -67,6 +74,7 @@ public class StatisticsServiceImplTest {
         Mockito.verifyNoMoreInteractions(mockStatisticsRepository);
     }
 
+    @DisplayName("Test - StatisticsServiceImplTest - testGetAllStatistics")
     @Test
     public void testGetAllStatistics(){
         this.statisticsService.getAllStatistics();
