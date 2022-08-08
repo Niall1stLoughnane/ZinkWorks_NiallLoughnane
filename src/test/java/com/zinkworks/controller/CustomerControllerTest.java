@@ -3,6 +3,7 @@ package com.zinkworks.controller;
 import com.zinkworks.enums.RequestType;
 import com.zinkworks.exceptions.AccountNotValidatedException;
 import com.zinkworks.exceptions.CustomerInvalidException;
+import com.zinkworks.exceptions.InvalidReequestAmountException;
 import com.zinkworks.exceptions.ZinWorksException;
 import com.zinkworks.model.Balance;
 import com.zinkworks.model.CustomerAccount;
@@ -74,6 +75,24 @@ public class CustomerControllerTest {
         Mockito.verify(mockCustomerService).isValidCustomer(eq(1), eq(2), eq(RequestType.Withdrawal));
         Mockito.verify(mockStatisticsService).addWithdrawal(Mockito.eq(3d));
         Mockito.verify(mockStatisticsService).addWithdrawalSuccessful(Mockito.eq(3d));
+        Mockito.verifyNoMoreInteractions(mockCustomerAccount, mockCustomerService, mockDispenseService, mockBalanceService, mockStatisticsService);
+    }
+    @Test
+    public void testDispenseAccountWhenZinWorksExceptionIsThrown() throws ZinWorksException {
+        CustomerAccount mockCustomerAccount = Mockito.mock(CustomerAccount.class);
+        DispensedAmount dispensedAmount = new DispensedAmount(1d, mockCustomerAccount);
+        Mockito.when(mockDispenseService.dispense(1, 2, 3d)).thenThrow(new InvalidReequestAmountException("message", System.currentTimeMillis()));
+
+        try{
+            DispensedAmount result = customerController.dispenseAccount(1, 2, 3d);
+        } catch (InvalidReequestAmountException e) {
+            assertEquals("message", e.getMessage());
+        }
+        Mockito.verify(mockCustomerAccount, Mockito.times(2)). getBalance();
+        Mockito.verify(mockCustomerAccount). getOverDraft();
+        Mockito.verify(mockDispenseService).dispense(eq(1), eq(2), eq(3d));
+        Mockito.verify(mockCustomerService).isValidCustomer(eq(1), eq(2), eq(RequestType.Withdrawal));
+        Mockito.verify(mockStatisticsService).addWithdrawal(Mockito.eq(3d));
         Mockito.verifyNoMoreInteractions(mockCustomerAccount, mockCustomerService, mockDispenseService, mockBalanceService, mockStatisticsService);
     }
 }

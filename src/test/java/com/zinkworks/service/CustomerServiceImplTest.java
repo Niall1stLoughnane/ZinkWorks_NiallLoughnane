@@ -37,7 +37,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testIsValidCustomerWhenCustomerAccountIsNull() {
+    public void testIsValidCustomerWhenCustomerAccountIsNullGotBillingequest() {
         Mockito.when(mockCustomerAccountRepository.getCustomerAccount(1, 2)).thenReturn(null);
 
         try{
@@ -46,6 +46,19 @@ public class CustomerServiceImplTest {
             assertEquals("Invalid Customer with Account Number [1]", e.getMessage());
         }
         Mockito.verify(mockStatisticsService).addBalanceLoginFailure(Mockito.eq(1));
+        Mockito.verifyNoMoreInteractions(mockCustomerAccountRepository, mockStatisticsService);
+    }
+
+    @Test
+    public void testIsValidCustomerWhenCustomerAccountIsNullForWithdrawalRequest() {
+        Mockito.when(mockCustomerAccountRepository.getCustomerAccount(1, 2)).thenReturn(null);
+
+        try{
+            customerService.isValidCustomer(1, 2, RequestType.Withdrawal);
+        } catch (AccountNotValidatedException e) {
+            assertEquals("Invalid Customer with Account Number [1]", e.getMessage());
+        }
+        Mockito.verify(mockStatisticsService).addWithdrawalFailure(Mockito.eq(1d));
         Mockito.verifyNoMoreInteractions(mockCustomerAccountRepository, mockStatisticsService);
     }
 

@@ -21,7 +21,7 @@ public class StatisticsController {
     private StatisticsService statisticsService;
 
     @GetMapping("/getStatistics")
-    Statistics getBalance() {
+    Statistics getStatistics() {
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), "Statistics", "Getting Statistics");
         return this.statisticsService.getAllStatistics();
     }

@@ -37,18 +37,13 @@ public class CustomerController {
     }
 
     @DeleteMapping("/dispenseAccount")
-    DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin, @RequestParam(name = "amountRequested") double amountRequested) throws ZinWorksException {
+    DispensedAmount dispenseAccount(@RequestParam(name = "accountNumber") Integer accountNumber, @RequestParam(name = "pin") Integer pin, @RequestParam(name = "amountRequested") double amountRequested) throws CustomerInvalidException, AccountNotValidatedException, InvalidReequestAmountException {
         statisticsService.addWithdrawal(amountRequested);
         LoggingUtils.logMessage("INFO", this.getClass().getSimpleName(), Integer.toString(accountNumber), "Dispensing from customer");
         this.customerService.isValidCustomer(accountNumber, pin, RequestType.Withdrawal);
-        try{
-            DispensedAmount dispensedAmount = dispenseService.dispense(accountNumber, pin, amountRequested);
-            this.statisticsService.addWithdrawalSuccessful(amountRequested);
-            return dispensedAmount;
-        } catch (ZinWorksException e) {
-            this.statisticsService.addWithdrawalFailure(amountRequested);
-            throw e;
-        }
+        DispensedAmount dispensedAmount = dispenseService.dispense(accountNumber, pin, amountRequested);
+        this.statisticsService.addWithdrawalSuccessful(amountRequested);
+        return dispensedAmount;
     }
 
 }
