@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a class that is used for api errors
+ **/
+
 package com.zinkworks;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

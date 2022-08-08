@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class this is a model class that is the response to the user of a withdrawal
+ **/
+
 package com.zinkworks.model;
 
 import com.zinkworks.utils.NotesUtil;

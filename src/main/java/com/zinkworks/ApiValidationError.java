@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is used to validate API processes
+ **/
+
 package com.zinkworks;
 
 import lombok.AllArgsConstructor;

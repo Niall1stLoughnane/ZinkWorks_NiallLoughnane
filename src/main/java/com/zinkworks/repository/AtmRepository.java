@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class this is a reository for interactions with the ATM
+ **/
+
 package com.zinkworks.repository;
 
 import com.zinkworks.model.Notes;

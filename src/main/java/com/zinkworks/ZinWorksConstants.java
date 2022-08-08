@@ -1,8 +1,14 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a constant class to store common constants/texts
+ **/
+
 package com.zinkworks;
 
 public interface ZinWorksConstants {
 
-    String EXCEPTION_DISPENSE_NOT_ALLOWED = "Dispense not allowed";
     String EXCEPTION_INVALID_CUSTOMER_WITH_ACCOUNT_NUMBER = "Invalid Customer with Account Number [%s]";
     String EXCEPTION_INVALID_CUSTOMER_WITH_ACCOUNT_NUMBER_S_PIN = "Invalid Customer with [Account Number:[%s] [Pin: %s]";
     String EXCEPTION_INVALID_REQUEST_AMOUNT = "Invalid Request Amount: %s";

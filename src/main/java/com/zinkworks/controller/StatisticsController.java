@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a controller class for processing statistics
+ **/
+
 package com.zinkworks.controller;
 
 import com.zinkworks.model.Statistics;

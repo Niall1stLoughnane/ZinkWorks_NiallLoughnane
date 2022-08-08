@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a model class of an account
+ **/
+
 package com.zinkworks.model;
 
 import lombok.Data;

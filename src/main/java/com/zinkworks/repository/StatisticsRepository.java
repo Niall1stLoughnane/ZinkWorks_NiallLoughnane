@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class this is a repository for interactions ith statistical information within the system
+ **/
+
 package com.zinkworks.repository;
 
 import com.zinkworks.model.Statistics;

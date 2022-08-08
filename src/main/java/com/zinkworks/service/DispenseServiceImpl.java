@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class this is a service that processes dispense information
+ **/
+
 package com.zinkworks.service;
 
 import com.zinkworks.exceptions.InvalidReequestAmountException;

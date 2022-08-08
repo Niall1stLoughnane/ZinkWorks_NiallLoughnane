@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class this is a service that processes ATM services
+ **/
+
 package com.zinkworks.service;
 
 import com.zinkworks.model.Notes;

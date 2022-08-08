@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a common utility for logging purposes
+ **/
+
 package com.zinkworks.utils;
 
 import org.slf4j.Logger;

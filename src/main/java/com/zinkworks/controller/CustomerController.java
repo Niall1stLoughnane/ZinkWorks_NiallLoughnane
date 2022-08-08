@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a controller class for accepting balance and withdrawal requests
+ **/
+
 package com.zinkworks.controller;
 
 import com.zinkworks.enums.RequestType;
@@ -14,11 +21,6 @@ import com.zinkworks.utils.LoggingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- *
- *
- *
- */
 
 @RequestMapping("/customer")
 @RestController

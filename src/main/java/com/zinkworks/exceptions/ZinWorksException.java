@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a base exception class where other exceptions inherit from
+ **/
+
 package com.zinkworks.exceptions;
 
 public abstract class ZinWorksException extends Throwable {

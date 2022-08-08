@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class this is a model class for the statistics throughout the system
+ **/
+
 package com.zinkworks.model;
 
 import lombok.Data;

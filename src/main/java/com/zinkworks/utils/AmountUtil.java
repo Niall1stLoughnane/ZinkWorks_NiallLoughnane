@@ -1,3 +1,10 @@
+/**
+ * Author:    Niall Loughnane
+ * Created:   08.08.2020
+ *
+ * This class is a utility for processing amounts
+ **/
+
 package com.zinkworks.utils;
 
 import com.zinkworks.exceptions.InvalidReequestAmountException;
