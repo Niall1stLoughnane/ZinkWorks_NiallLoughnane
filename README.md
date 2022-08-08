@@ -50,6 +50,11 @@ Documentation
       * such as using annotations to check if its a real customer prior to getting into the controller layer
       * examine if thread local can be used for tracking customers
 
+Notes:
+* Database - i do see that a DB could be integrated for both processing and for locking updates to be done to the ATM balance
+* A webpage would be useful for reproducing requests and responses - what i mainly used was Postman
+* Postman - i have included the Postman collection that i used for all 3 API methods and for error producing within folder //doc//postman_collection//ZinWorks.postman_collection.json
+
 If i could say:
 * Hope you had a Great Weekend
 * I really enjoyed developing this ATM system

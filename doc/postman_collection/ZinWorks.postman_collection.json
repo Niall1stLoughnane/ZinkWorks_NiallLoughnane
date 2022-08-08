@@ -1,0 +1,176 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ZinWorks",
+		"_postman_id": "b522a646-01ab-ffe0-56a5-e3651e0df0a2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Balance Incorrect",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/customer/balance?accountNumber=234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"balance"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "234",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Balance Correct",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/customer/balance?accountNumber=123456789&pin=1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"balance"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "123456789",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pin",
+							"value": "1234",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Dispense Account",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/customer/dispenseAccount?accountNumber=123456789&pin=1234&amountRequested=230",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"dispenseAccount"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "123456789",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pin",
+							"value": "1234",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "amountRequested",
+							"value": "230",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Dispense Pin Incorrect",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/customer/dispenseAccount?accountNumber=123456789&pin=111111&amountRequested=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"dispenseAccount"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "123456789",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pin",
+							"value": "111111",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "amountRequested",
+							"value": "50",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Statistics",
+			"request": {
+				"url": "http://localhost:8080/statistics/getStatistics",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
