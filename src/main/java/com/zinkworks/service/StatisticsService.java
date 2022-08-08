@@ -1,7 +1,6 @@
 package com.zinkworks.service;
 
 import com.zinkworks.model.Statistics;
-import org.springframework.stereotype.Service;
 
 public interface StatisticsService {
 
